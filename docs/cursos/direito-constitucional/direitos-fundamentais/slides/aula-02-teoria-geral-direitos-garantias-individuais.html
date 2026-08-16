@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="deck-html-direitos.css">
   <style>.quadro-sinotico { gap: 26px; } .quadro-sinotico .stack { gap: 10px; } .quadro-sinotico .box { min-height: 0; padding: 9px 14px; } .quadro-sinotico .box strong { margin-bottom: 2px; font-size: 18px; } .quadro-sinotico .box .small { font-size: 15px; line-height: 1.12; }</style>
 </head>
-<body>
+<body class="projecao-segura">
   <main class="deck" aria-label="Deck da aula 02 de Direitos Fundamentais">
     <section class="slide title banded" data-slide="1/18">
       <div class="block-band"><span>Aula 02 · abertura</span></div>
@@ -102,8 +102,8 @@
     <section class="slide banded" data-slide="17/18">
       <div class="block-band"><span>Bloco 4 · treino e correção</span></div>
       <p class="kicker">Questão de treino</p><h2>Qual afirmação traduz melhor a aplicação imediata dos direitos fundamentais?</h2>
-      <div class="choice"><div>A. Todo direito gera automaticamente qualquer prestação material desejada.</div><div>B. O art. 5º só produz efeitos depois de lei que o repita.</div><div>C. O direito tem força jurídica atual, embora sua concretização possa exigir meios institucionais diversos.</div><div>D. A aplicação imediata impede toda regulamentação legislativa.</div></div>
-      
+      <div class="choice"><div>A. Todo direito gera automaticamente qualquer prestação material desejada.</div><div>B. O art. 5º só produz efeitos depois de lei que o repita.</div><div class="correct">C. O direito tem força jurídica atual, embora sua concretização possa exigir meios institucionais diversos.</div><div>D. A aplicação imediata impede toda regulamentação legislativa.</div></div>
+      <p class="notice gabarito">Gabarito: C. CF/88, art. 5º, § 1º. Revele somente depois do debate.</p>
     </section>
     <section class="slide banded" data-slide="18/18">
       <div class="block-band"><span>Bloco 4 · síntese e continuidade</span></div>
@@ -117,5 +117,9 @@
       <p class="lead">Material organizado para uso docente com apoio de Inteligência Artificial Generativa (Codex/OpenAI) para curadoria, saneamento de controles internos e preparação de publicação na Área do Professor.</p>
       <p class="footer">Fontes, seleção do conteúdo e responsabilidade final permanecem do docente. Diretrizes observadas: Portaria CNPq nº 2.664/2026.</p>
     </section>  </main>
+  <div class="hud" id="hud" aria-hidden="true"><div class="hud-item"><span class="hud-label">Lâmina</span><span class="hud-value" id="hud-slide">1/18</span></div><p class="hud-help">setas navegam · F tela cheia · G gabarito · O oculta opcionais · M limpa · H oculta este painel</p></div>
+  <script>
+  (function(){var slides=[].slice.call(document.querySelectorAll('.slide')),atual=0,hud=document.getElementById('hud-slide');function visiveis(){return slides.filter(function(slide){return slide.offsetParent!==null})}function irPara(indice){var lista=visiveis();if(!lista.length)return;atual=Math.max(0,Math.min(lista.length-1,indice));lista[atual].scrollIntoView({behavior:'smooth',block:'start'});hud.textContent=(atual+1)+'/'+lista.length}function naTela(){var lista=visiveis(),melhor=lista[0],distancia=Infinity;lista.forEach(function(slide){var atual=Math.abs(slide.getBoundingClientRect().top);if(atual<distancia){distancia=atual;melhor=slide}});return melhor}document.addEventListener('keydown',function(evento){var tecla=evento.key;if(tecla==='ArrowRight'||tecla==='ArrowDown'||tecla==='PageDown'||tecla===' '){evento.preventDefault();irPara(atual+1)}else if(tecla==='ArrowLeft'||tecla==='ArrowUp'||tecla==='PageUp'){evento.preventDefault();irPara(atual-1)}else if(tecla==='Home'){evento.preventDefault();irPara(0)}else if(tecla==='End'){evento.preventDefault();irPara(visiveis().length-1)}else if(tecla==='f'||tecla==='F'){if(document.fullscreenElement)document.exitFullscreen();else if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen()}else if(tecla==='g'||tecla==='G')document.body.classList.toggle('mostrar-gabarito');else if(tecla==='o'||tecla==='O'){var referencia=naTela();document.body.classList.toggle('hide-optional');var indice=visiveis().indexOf(referencia);irPara(indice<0?Math.min(atual,visiveis().length-1):indice)}else if(tecla==='h'||tecla==='H')document.body.classList.toggle('hud-off');else if(tecla==='m'||tecla==='M'){document.body.classList.toggle('sem-marcas');document.body.classList.remove('mostrar-gabarito')}});if('IntersectionObserver'in window){var observador=new IntersectionObserver(function(entradas){entradas.forEach(function(entrada){if(entrada.isIntersecting){var indice=visiveis().indexOf(entrada.target);if(indice>=0){atual=indice;hud.textContent=(indice+1)+'/'+visiveis().length}}})},{threshold:.55});slides.forEach(function(slide){observador.observe(slide)})}irPara(0)})();
+  </script>
 </body>
 </html>

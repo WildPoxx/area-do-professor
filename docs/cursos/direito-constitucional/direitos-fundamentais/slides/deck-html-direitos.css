@@ -529,4 +529,49 @@ body.sem-marcas .slide.optional .block-band {
   height: 686px;
 }
 
+/* Controles de apresentação restaurados para decks docentes curados.
+   Não inclui notas internas: apenas navegação, gabarito e painel de ritmo. */
+body.projecao-segura .choice .correct {
+  border-left-color: var(--line);
+  font-weight: 400;
+}
+
+body.projecao-segura.mostrar-gabarito .choice .correct {
+  border-left-color: var(--accent);
+  font-weight: 750;
+}
+
+body.projecao-segura .gabarito { visibility: hidden; }
+body.projecao-segura.mostrar-gabarito .gabarito { visibility: visible; }
+
+.hud {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  border-radius: 4px;
+  background: rgba(31, 41, 51, .92);
+  color: #f7f4ee;
+  font-family: "Aptos", "Inter", "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.2;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .4);
+}
+
+.hud .hud-item { display: flex; flex-direction: column; gap: 2px; }
+.hud .hud-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #9fb3b1; }
+.hud .hud-value { font-size: 17px; font-weight: 750; font-variant-numeric: tabular-nums; }
+.hud .hud-help { max-width: 300px; font-size: 11px; line-height: 1.35; color: #9fb3b1; }
+body.hud-off .hud { display: none; }
+
+@media print {
+  .hud { display: none; }
+  body.projecao-segura .gabarito { visibility: visible; }
+  body.projecao-segura .choice .correct { border-left-color: var(--accent); font-weight: 750; }
+}
+
 
