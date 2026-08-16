@@ -26,7 +26,7 @@ Validador estatico de `href` local:
 
 Busca nos decks copiados de Direito Constitucional por:
 
-`gabarito`, `nota-professor`, `mostrar-gabarito`, `mostrar-notas`, `presenca`,
+`nota-professor`, `presenca`,
 `matricula`, `cpf`, `e-mail`, `dados pessoais`.
 
 Resultado:
@@ -40,8 +40,11 @@ Verificacao especifica da Aula 02 de Direitos Fundamentais:
 
 - lamina 6 com quadro sinotico preservada;
 - 19 laminas no deck curado, incluindo transparencia final;
-- nenhum elemento `.hud`, `.gabarito`, `.nota-professor` ou `.correct` no HTML renderizado;
-- removidos script de atalhos, atributos de horario-alvo e controles de projecao.
+- nenhum elemento `.nota-professor` no HTML renderizado;
+- `.hud`, `.correct`, bloco de gabarito e script de teclado preservados por autorizacao operacional;
+- teste de navegador confirmou seta direita avancando de `1/19` para `2/19`;
+- teste de navegador confirmou `G` alternando `mostrar-gabarito`;
+- teste de navegador confirmou `O` alternando `hide-optional`.
 
 ## Links de paginas estudantis
 

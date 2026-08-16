@@ -29,10 +29,9 @@ Destino: `docs/cursos/direito-constitucional/direitos-fundamentais/slides/aula-0
 
 Saneamento aplicado:
 
-- removidos HUD, script de atalhos e controles internos de ritmo/projecao;
 - removida nota do professor;
-- removido gabarito da questao de treino;
-- removida a marcacao interna da alternativa correta;
+- preservados HUD, navegacao por teclado, tela cheia, ocultacao de opcionais e controles de apresentacao;
+- preservados `.correct` e bloco de gabarito, por serem parte da operacao docente autorizada do deck;
 - preservada a lamina 6, com quadro sinotico comparativo das dez caracteristicas/nocoes.
 
 Material estudantil publico relacionado: `https://wildpoxx.github.io/direito-constitucional/direitos-fundamentais/materiais/modulo-2-teoria-geral-direitos-garantias-individuais.html`.

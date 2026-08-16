@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --paper: #f7f4ee;
   --paper-warm: #fffaf3;
   --ink: #1f2933;
@@ -261,6 +261,11 @@ h2 {
   line-height: 1.22;
 }
 
+.choice .correct {
+  border-left-color: var(--accent);
+  font-weight: 750;
+}
+
 .tag-row {
   display: flex;
   flex-wrap: wrap;
@@ -484,7 +489,68 @@ body.hide-optional .slide.optional {
   display: none;
 }
 
+/* HUD do professor: relógio real contra horário-alvo */
+.hud {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+  border-radius: 4px;
+  background: rgba(31, 41, 51, .92);
+  color: #f7f4ee;
+  font-family: "Aptos", "Inter", "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.2;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .4);
+}
+
+.hud .hud-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hud .hud-label {
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #9fb3b1;
+}
+
+.hud .hud-value {
+  font-size: 17px;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud .hud-value.late {
+  color: #f4a58a;
+}
+
+.hud .hud-value.ahead {
+  color: #8fd3c8;
+}
+
+.hud .hud-help {
+  max-width: 210px;
+  font-size: 11px;
+  line-height: 1.35;
+  color: #9fb3b1;
+}
+
+body.hud-off .hud {
+  display: none;
+}
+
 @media print {
+  .hud {
+    display: none;
+  }
+
   .slide.optional {
     background: #fff;
   }
@@ -529,8 +595,16 @@ body.sem-marcas .slide.optional .block-band {
   height: 686px;
 }
 
-/* Controles de apresentação restaurados para decks docentes curados.
-   Não inclui notas internas: apenas navegação, gabarito e painel de ritmo. */
+
+/* ==========================================================
+   Camada de projeção segura
+   Acrescentada em 09/08/2026 para a aula de 10/08/2026.
+   Nada foi removido: todas as regras acima continuam valendo.
+   Só vale para decks que declaram <body class="projecao-segura">,
+   por isso os decks v1 continuam se comportando como antes.
+   ========================================================== */
+
+/* 1. Gabarito oculto por padrão. Tecla G revela. */
 body.projecao-segura .choice .correct {
   border-left-color: var(--line);
   font-weight: 400;
@@ -541,37 +615,48 @@ body.projecao-segura.mostrar-gabarito .choice .correct {
   font-weight: 750;
 }
 
-body.projecao-segura .gabarito { visibility: hidden; }
-body.projecao-segura.mostrar-gabarito .gabarito { visibility: visible; }
+body.projecao-segura .gabarito {
+  visibility: hidden;
+}
 
-.hud {
-  position: fixed;
-  left: 18px;
-  bottom: 18px;
-  z-index: 50;
+body.projecao-segura.mostrar-gabarito .gabarito {
+  visibility: visible;
+}
+
+/* 2. Notas de bastidor ocultas por padrão. Tecla N revela. */
+body.projecao-segura .nota-professor,
+body.projecao-segura .image-prompt {
+  visibility: hidden;
+}
+
+body.projecao-segura.mostrar-notas .nota-professor,
+body.projecao-segura.mostrar-notas .image-prompt {
+  visibility: visible;
+}
+
+/* 3. Citação lateral ocupando a coluna inteira no layout de duas colunas */
+body.projecao-segura .visual-layout > .quote {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 10px 16px;
-  border-radius: 4px;
-  background: rgba(31, 41, 51, .92);
-  color: #f7f4ee;
-  font-family: "Aptos", "Inter", "Segoe UI", Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.2;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, .4);
+  margin-top: 0;
+  align-self: stretch;
 }
 
-.hud .hud-item { display: flex; flex-direction: column; gap: 2px; }
-.hud .hud-label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #9fb3b1; }
-.hud .hud-value { font-size: 17px; font-weight: 750; font-variant-numeric: tabular-nums; }
-.hud .hud-help { max-width: 300px; font-size: 11px; line-height: 1.35; color: #9fb3b1; }
-body.hud-off .hud { display: none; }
+/* 4. O painel do professor ganhou duas teclas: precisa de mais largura */
+body.projecao-segura .hud .hud-help {
+  max-width: 300px;
+}
 
+/* 5. Na impressão em PDF, gabarito e notas saem visíveis (cópia do professor) */
 @media print {
-  .hud { display: none; }
-  body.projecao-segura .gabarito { visibility: visible; }
-  body.projecao-segura .choice .correct { border-left-color: var(--accent); font-weight: 750; }
+  body.projecao-segura .gabarito,
+  body.projecao-segura .nota-professor,
+  body.projecao-segura .image-prompt {
+    visibility: visible;
+  }
+
+  body.projecao-segura .choice .correct {
+    border-left-color: var(--accent);
+    font-weight: 750;
+  }
 }
-
-
