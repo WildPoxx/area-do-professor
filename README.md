@@ -7,10 +7,12 @@ Esta pasta foi criada fora do vault sincronizado com Google Drive, em:
 
 `C:\Users\amari\source\GITS\GitHub - Docencia Geral\area-do-professor`
 
-Estado desta etapa:
+Estado atual:
 
 - estrutura estatica navegavel em `docs/`;
 - repositorio GitHub: `https://github.com/WildPoxx/area-do-professor`;
+- GitHub Pages publicado em `https://wildpoxx.github.io/area-do-professor/`;
+- fonte de publicacao: branch `main`, pasta `/docs`;
 - decks copiados apenas apos curadoria inicial;
 - IDPP listado como pendente de saneamento por conter gabaritos/notas nos
   arquivos candidatos.

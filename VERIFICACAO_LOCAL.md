@@ -1,12 +1,14 @@
-# Verificacao local
+# Verificacao local e publicacao
 
 Data: 2026-08-16
 
 ## Resultado
 
 - Estrutura criada em `C:\Users\amari\source\GITS\GitHub - Docencia Geral\area-do-professor`.
-- Pasta local sem `.git`.
 - Vault `C:\Users\amari\source\Docencia Geral` tambem sem `.git`.
+- Repositorio GitHub: `https://github.com/WildPoxx/area-do-professor`.
+- GitHub Pages: `https://wildpoxx.github.io/area-do-professor/`.
+- Fonte Pages: branch `main`, pasta `/docs`.
 - Total da area local: 38 arquivos.
 - HTMLs em `docs/`: 33.
 - Decks copiados: 23.
@@ -57,13 +59,13 @@ Validacao headless feita com Google Chrome local via Playwright:
 - deck `Teoria da Constituicao - Modulo 1` abriu com 11 slides;
 - a lamina `Declaracao de uso de IA generativa` foi localizada no deck.
 
-## Fora do escopo desta etapa
+## Validacao online
 
-- `git init`
-- commit
-- push
-- remote
-- workflow
-- GitHub Pages
-- publicacao
+- `https://wildpoxx.github.io/area-do-professor/` respondeu 200.
+- `https://wildpoxx.github.io/area-do-professor/cursos/index.html` respondeu 200.
+- `https://wildpoxx.github.io/area-do-professor/cursos/direito-constitucional/teoria-da-constituicao/slides/modulo-01-constitucionalismo-moderno.html` respondeu 200.
 
+## Nao utilizado
+
+- Workflow customizado do GitHub Actions.
+- Publicacao a partir do vault.

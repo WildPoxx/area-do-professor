@@ -6,7 +6,9 @@ Data: 2026-08-16
 
 - Vault de origem: `C:\Users\amari\source\Docencia Geral`
 - Area local criada: `C:\Users\amari\source\GITS\GitHub - Docencia Geral\area-do-professor`
-- Entregavel navegavel: `docs/index.html`
+- Repositorio GitHub: `https://github.com/WildPoxx/area-do-professor`
+- URL publicada: `https://wildpoxx.github.io/area-do-professor/`
+- Fonte Pages: branch `main`, pasta `/docs`
 
 ## Lote incluido
 
@@ -35,10 +37,9 @@ separados em versao docente realmente revisada.
 - A area deixa claro que URL nao exposta significa discricao, nao controle de
   acesso.
 
-## Nao realizado nesta etapa
+## Realizado na etapa de publicacao
 
-- Nenhum repositorio Git foi inicializado.
-- Nenhum remote foi criado.
-- Nenhum commit, push, workflow, deploy ou GitHub Pages foi configurado.
+- Repositorio Git inicializado em `GITS`, fora do vault sincronizado.
+- Remote `origin` configurado para `https://github.com/WildPoxx/area-do-professor.git`.
+- GitHub Pages ativado a partir de `main/docs`.
 - Nenhum arquivo do vault foi alterado.
-
