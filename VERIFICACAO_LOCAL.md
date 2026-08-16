@@ -9,10 +9,10 @@ Data: 2026-08-16
 - Repositorio GitHub: `https://github.com/WildPoxx/area-do-professor`.
 - GitHub Pages: `https://wildpoxx.github.io/area-do-professor/`.
 - Fonte Pages: branch `main`, pasta `/docs`.
-- Total da area local: 38 arquivos.
-- HTMLs em `docs/`: 33.
-- Decks copiados: 23.
-- Decks com lamina final de transparencia de IA: 23.
+- Total da area local: 44 arquivos.
+- HTMLs em `docs/`: 36.
+- Decks copiados: 24.
+- Decks com lamina final de transparencia de IA: 24.
 
 ## Links
 
@@ -35,6 +35,13 @@ Resultado:
 
 Os unicos achados na area local estao nas paginas de IDPP que explicam por que
 os decks dessa disciplina permanecem em curadoria.
+
+Verificacao especifica da Aula 02 de Direitos Fundamentais:
+
+- lamina 6 com quadro sinotico preservada;
+- 19 laminas no deck curado, incluindo transparencia final;
+- nenhum elemento `.hud`, `.gabarito`, `.nota-professor` ou `.correct` no HTML renderizado;
+- removidos script de atalhos, atributos de horario-alvo e controles de projecao.
 
 ## Links de paginas estudantis
 

@@ -12,13 +12,30 @@ Data: 2026-08-16
 
 ## Lote incluido
 
-Foram migrados 23 decks HTML para a primeira versao local:
+Foram migrados 24 decks HTML para a versao publicada:
 
 - 13 modulos de Teoria da Constituicao;
-- 10 modulos de Organizacao dos Poderes.
+- 10 modulos de Organizacao dos Poderes;
+- 1 aula de Direitos Fundamentais: Aula 02, Teoria Geral dos Direitos Fundamentais e Garantias Individuais, de 17/08/2026.
 
 Esses decks sao modulos conceituais e nao sao versoes de apresentacao de
 disciplina, cronograma de turma ou avaliacao institucional.
+
+## Curadoria especifica - Direitos Fundamentais, Aula 02
+
+Origem: `C:\Users\amari\source\Docencia Geral\01. Materias\03. Dir. Fundamentais\Slides\Deck HTML - Aula 02 - Direitos e Garantias Individuais I.html`.
+
+Destino: `docs/cursos/direito-constitucional/direitos-fundamentais/slides/aula-02-teoria-geral-direitos-garantias-individuais.html`.
+
+Saneamento aplicado:
+
+- removidos HUD, script de atalhos e controles internos de ritmo/projecao;
+- removida nota do professor;
+- removido gabarito da questao de treino;
+- removida a marcacao interna da alternativa correta;
+- preservada a lamina 6, com quadro sinotico comparativo das dez caracteristicas/nocoes.
+
+Material estudantil publico relacionado: `https://wildpoxx.github.io/direito-constitucional/direitos-fundamentais/materiais/modulo-2-teoria-geral-direitos-garantias-individuais.html`.
 
 ## Lote mantido em curadoria
 
