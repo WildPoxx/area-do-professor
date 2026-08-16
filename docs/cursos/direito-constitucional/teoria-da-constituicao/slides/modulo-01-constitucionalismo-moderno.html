@@ -1,459 +1,314 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Teoria da Constituição - Módulo 1</title>
-  <style>
-    :root {
-      --paper: #f7f4ee;
-      --paper-warm: #fffaf3;
-      --ink: #1f2933;
-      --muted: #667085;
-      --accent: #7c2d12;
-      --accent-soft: #e7d0c2;
-      --line: #d8c8b8;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Aptos", "Inter", "Segoe UI", Arial, sans-serif;
-      background: #27221f;
-      color: var(--ink);
-    }
-
-    .deck {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      align-items: center;
-      padding: 28px;
-    }
-
-    .slide {
-      position: relative;
-      width: 1280px;
-      height: 720px;
-      padding: 56px 72px;
-      overflow: hidden;
-      background: var(--paper);
-      color: var(--ink);
-      box-shadow: 0 20px 70px rgba(0, 0, 0, .35);
-    }
-
-    .slide::after {
-      content: attr(data-slide);
-      position: absolute;
-      right: 72px;
-      bottom: 32px;
-      font-size: 18px;
-      color: var(--muted);
-    }
-
-    .title {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .title::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto auto;
-      width: 360px;
-      height: 720px;
-      background: linear-gradient(180deg, rgba(124, 45, 18, .12), rgba(124, 45, 18, 0));
-    }
-
-    .kicker {
-      margin: 0 0 18px;
-      font-size: 22px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--accent);
-    }
-
-    h1 {
-      max-width: 940px;
-      margin: 0;
-      font-size: 58px;
-      line-height: 1.05;
-      letter-spacing: 0;
-    }
-
-    h2 {
-      max-width: 1000px;
-      margin: 0 0 28px;
-      font-size: 42px;
-      line-height: 1.1;
-      letter-spacing: 0;
-    }
-
-    .lead {
-      max-width: 920px;
-      margin: 28px 0 0;
-      font-size: 30px;
-      line-height: 1.25;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-top: 42px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      margin-top: 42px;
-    }
-
-    .box {
-      min-height: 178px;
-      padding: 20px 24px;
-      border-left: 6px solid var(--accent);
-      background: var(--paper-warm);
-    }
-
-    .box strong {
-      display: block;
-      margin-bottom: 14px;
-      font-size: 28px;
-      line-height: 1.1;
-      color: var(--accent);
-    }
-
-    .box.compact {
-      min-height: 112px;
-      padding: 16px 20px;
-    }
-
-    .box.compact strong {
-      margin-bottom: 8px;
-      font-size: 24px;
-    }
-
-    .box.compact .small {
-      font-size: 19px;
-      line-height: 1.28;
-    }
-
-    .small {
-      margin: 0;
-      font-size: 22px;
-      line-height: 1.35;
-    }
-
-    .footer {
-      position: absolute;
-      bottom: 32px;
-      left: 72px;
-      margin: 0;
-      max-width: 860px;
-      font-size: 18px;
-      line-height: 1.3;
-      color: var(--muted);
-    }
-
-    .rule {
-      width: 120px;
-      height: 6px;
-      margin: 30px 0 0;
-      background: var(--accent);
-    }
-
-    .quote {
-      margin-top: 54px;
-      padding: 30px 34px;
-      border: 2px solid var(--line);
-      background: rgba(255, 250, 243, .72);
-      font-size: 32px;
-      line-height: 1.25;
-    }
-
-    .activity-question {
-      max-width: 980px;
-      margin: 32px 0 0;
-      font-size: 38px;
-      line-height: 1.15;
-      font-weight: 750;
-    }
-
-    .visual-layout {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 36px;
-      align-items: stretch;
-      margin-top: 30px;
-    }
-
-    .stack {
-      display: grid;
-      gap: 18px;
-    }
-
-    .image-slot {
-      min-height: 376px;
-      padding: 24px;
-      border: 2px dashed var(--accent-soft);
-      background:
-        linear-gradient(135deg, rgba(124, 45, 18, .08), rgba(255, 250, 243, .82)),
-        var(--paper-warm);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-
-    .image-slot-label {
-      margin: 0 0 12px;
-      font-size: 18px;
-      font-weight: 750;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: var(--accent);
-    }
-
-    .image-prompt {
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.3;
-      color: #344054;
-    }
-
-    @media (max-width: 1320px) {
-      .deck {
-        align-items: flex-start;
-      }
-
-      .slide {
-        transform: scale(calc((100vw - 56px) / 1280));
-        transform-origin: top left;
-        margin-bottom: calc((720px * ((100vw - 56px) / 1280)) - 720px);
-      }
-    }
-
-    @media print {
-      body {
-        background: #fff;
-      }
-
-      .deck {
-        display: block;
-        padding: 0;
-      }
-
-      .slide {
-        page-break-after: always;
-        box-shadow: none;
-      }
-    }
-  </style>
+  <title>Teoria da Constituição — Módulo 1 — Constitucionalismo e Direito Constitucional</title>
+  <link rel="stylesheet" href="deck-html-teoria.css">
 </head>
-<body>
+<body class="projecao-segura" data-bloco="Módulo 1" data-fim="22:00">
   <main class="deck" aria-label="Deck do Módulo 1 de Teoria da Constituição">
-    <section class="slide title" data-slide="1/10">
-      <p class="kicker">Teoria da Constituição · Módulo 1</p>
-      <h1>Constitucionalismo moderno e Direito Constitucional</h1>
-      <p class="lead">A Constituição como técnica jurídica de limitação, organização e legitimação do poder.</p>
+    <section class="slide title banded" data-slide="1/20" data-alvo="18:30">
+      <div class="block-band"><span>Módulo 1 · abertura</span><span class="clock">alvo 18:30</span></div>
+      <p class="kicker">Teoria da Constituição · Unidade I</p>
+      <h1>Constitucionalismo e Direito Constitucional</h1>
+      <p class="lead">Quem exerce poder em uma democracia também está submetido à Constituição.</p>
       <div class="rule"></div>
-      <p class="footer">Problema-guia: quando começa, propriamente, o constitucionalismo?</p>
+      <p class="footer">Aula de 18 de agosto de 2026 · Constituição Federal aberta durante a aula.</p>
     </section>
 
-    <section class="slide" data-slide="2/10">
-      <p class="kicker">Problema de partida</p>
-      <h2>Nem todo limite ao poder é constitucionalismo</h2>
+    <section class="slide banded" data-slide="2/20" data-alvo="18:36">
+      <div class="block-band"><span>Bloco 1 · competência</span><span class="clock">alvo 18:36</span></div>
+      <p class="kicker">Objetivo da aula</p>
+      <h2>Ao final, você deve explicar como a Constituição limita, organiza e legitima o poder</h2>
+      <div class="grid-3">
+        <div class="box"><strong>Distinguir</strong><p class="small">antecedentes históricos e constitucionalismo moderno.</p></div>
+        <div class="box"><strong>Ler</strong><p class="small">direitos, Poderes e objetivos na CF/88.</p></div>
+        <div class="box alt"><strong>Aplicar</strong><p class="small">o conceito a uma decisão estatal concreta.</p></div>
+      </div>
+      <p class="nota-professor micro">Abra com a pergunta da próxima lâmina; não antecipe a definição.</p>
+    </section>
+
+    <section class="slide banded" data-slide="3/20" data-alvo="18:43">
+      <div class="block-band"><span>Bloco 1 · problema</span><span class="clock">alvo 18:43</span></div>
+      <p class="kicker">Caso de partida</p>
+      <h2>Poder eleito não é poder sem limites</h2>
+      <div class="visual-layout">
+        <div class="quote">Um governo recém-eleito quer proibir associações críticas, afastar julgadores que o contrariem e ocupar imóveis sem defesa nem procedimento. Alega que a maioria lhe deu liberdade para governar.</div>
+        <div class="stack">
+          <div class="box compact"><strong>Pergunta</strong><p class="small">A vitória eleitoral basta para justificar as três medidas?</p></div>
+          <div class="box alt compact"><strong>Método</strong><p class="small">Antes de responder, localize Constituição, poder, direito e controle.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide banded" data-slide="4/20" data-alvo="18:52">
+      <div class="block-band"><span>Bloco 1 · Constituição na mão</span><span class="clock">alvo 18:52</span></div>
+      <p class="kicker">Leitura primária · CF/88</p>
+      <h2>O caso já encontra limites no texto constitucional</h2>
+      <div class="table compacta">
+        <div class="head">Dispositivo</div><div class="head">Ideia central</div><div class="head">Pergunta para o caso</div>
+        <div><strong>Art. 1º</strong></div><div>Estado Democrático de Direito, pluralismo e poder do povo.</div><div>Povo é fonte de poder; a Constituição define seus termos.</div>
+        <div><strong>Art. 2º</strong></div><div>Independência e harmonia entre os Poderes.</div><div>O Executivo pode controlar quem julga?</div>
+        <div><strong>Art. 5º</strong></div><div>Liberdade, associação, propriedade e garantias.</div><div>Que direitos e procedimentos foram atingidos?</div>
+      </div>
+      <p class="footer">Leia: arts. 1º, 2º, 3º e 5º, caput, XVII, XXII e XXIII.</p>
+    </section>
+
+    <section class="slide banded" data-slide="5/20" data-alvo="19:02">
+      <div class="block-band"><span>Bloco 1 · tese</span><span class="clock">alvo 19:02</span></div>
+      <p class="kicker">Conceito inicial</p>
+      <h2>Constitucionalismo é limite efetivo ao poder — não o nome de qualquer texto político</h2>
       <div class="grid-2">
-        <div class="box">
-          <strong>Uso amplo</strong>
-          <p class="small">Experiências históricas de limitação política do poder.</p>
-        </div>
-        <div class="box">
-          <strong>Uso rigoroso</strong>
-          <p class="small">Constitucionalismo como fenômeno moderno, ligado a Constituição escrita, direitos e separação de poderes.</p>
-        </div>
+        <div class="box"><strong>Não basta</strong><p class="small">Uma Carta escrita, solene e ignorada na vida institucional.</p></div>
+        <div class="box alt"><strong>É preciso</strong><p class="small">direitos protegidos, instituições controláveis e procedimentos que vinculem o poder.</p></div>
       </div>
+      <p class="footer">BARROSO, 2020: limitação do poder e supremacia da lei não se confundem com a mera existência de uma Carta escrita.</p>
     </section>
 
-    <section class="slide" data-slide="3/10">
-      <p class="kicker">Correção conceitual</p>
-      <h2>“Antigo”, “medieval” e “do futuro” são categorias auxiliares</h2>
-      <div class="visual-layout">
-        <div class="stack">
-          <div class="box compact">
-            <strong>Antigo</strong>
-            <p class="small">Experiências de organização política, sem constitucionalismo moderno.</p>
-          </div>
-          <div class="box compact">
-            <strong>Medieval</strong>
-            <p class="small">Pactos, cartas e limitações estamentais ao poder.</p>
-          </div>
-          <div class="box compact">
-            <strong>Do futuro</strong>
-            <p class="small">Projeções normativas sobre sustentabilidade, pluralismo e globalização.</p>
-          </div>
-        </div>
-        <div class="image-slot" role="img" aria-label="Espaço reservado para imagem ilustrativa sobre camadas históricas de limitação do poder">
-          <p class="image-slot-label">Espaço para imagem</p>
-          <p class="image-prompt"><strong>Prompt:</strong> ilustração editorial sóbria, em tons de pergaminho, marrom e azul-acinzentado, mostrando três camadas históricas abstratas de limitação do poder: assembleia antiga, carta medieval e horizonte constitucional contemporâneo; sem texto legível; proporção 16:9.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" data-slide="4/10">
-      <p class="kicker">Tese central</p>
-      <h2>O constitucionalismo moderno nasce de três exigências</h2>
+    <section class="slide banded" data-slide="6/20" data-alvo="19:12">
+      <div class="block-band"><span>Bloco 1 · conceito em operação</span><span class="clock">alvo 19:12</span></div>
+      <p class="kicker">Três dimensões do limite</p>
+      <h2>Direitos, instituições e procedimentos trabalham juntos</h2>
       <div class="grid-3">
-        <div class="box">
-          <strong>Limitar</strong>
-          <p class="small">O poder político deve encontrar barreiras jurídicas.</p>
-        </div>
-        <div class="box">
-          <strong>Organizar</strong>
-          <p class="small">O Estado precisa de competências, funções e procedimentos.</p>
-        </div>
-        <div class="box">
-          <strong>Garantir</strong>
-          <p class="small">Direitos fundamentais vinculam o exercício do poder.</p>
-        </div>
+        <div class="box"><strong>Material</strong><p class="small">O poder não pode violar arbitrariamente dignidade, liberdade, igualdade ou pluralismo.</p></div>
+        <div class="box"><strong>Orgânica</strong><p class="small">Funções são distribuídas para que um poder controle o outro.</p></div>
+        <div class="box alt"><strong>Procedimental</strong><p class="small">A decisão exige forma, fundamento, defesa e controle.</p></div>
       </div>
+      <p class="nota-professor micro">Peça três respostas rápidas: qual limite aparece em cada medida do caso?</p>
     </section>
 
-    <section class="slide" data-slide="5/10">
-      <p class="kicker">Tradições formadoras</p>
-      <h2>Três matrizes do constitucionalismo moderno</h2>
-      <div class="visual-layout">
-        <div class="stack">
-          <div class="box compact">
-            <strong>Inglesa</strong>
-            <p class="small">Historicidade, Parlamento, limitação gradual do poder.</p>
-          </div>
-          <div class="box compact">
-            <strong>Estadunidense</strong>
-            <p class="small">Constituição escrita, supremacia constitucional e judicial review.</p>
-          </div>
-          <div class="box compact">
-            <strong>Francesa</strong>
-            <p class="small">Poder constituinte, soberania popular e declaração de direitos.</p>
-          </div>
-        </div>
-        <div class="image-slot" role="img" aria-label="Espaço reservado para imagem ilustrativa sobre as matrizes inglesa, estadunidense e francesa">
-          <p class="image-slot-label">Espaço para imagem</p>
-          <p class="image-prompt"><strong>Prompt:</strong> composição histórica elegante com três referências visuais discretas: Parlamento britânico, Constituição escrita dos Estados Unidos e assembleia revolucionária francesa; estilo gravura contemporânea, acadêmico, sem caricatura, sem texto legível, paleta creme, vinho e azul profundo; proporção 16:9.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" data-slide="6/10">
-      <p class="kicker">Camadas históricas</p>
-      <h2>Do liberal ao social e democrático</h2>
+    <section class="slide banded" data-slide="7/20" data-alvo="19:22">
+      <div class="block-band"><span>Bloco 1 · precisão histórica</span><span class="clock">alvo 19:22</span></div>
+      <p class="kicker">Cuidado com a linguagem</p>
+      <h2>Nem todo freio histórico ao poder já era constitucionalismo moderno</h2>
       <div class="grid-3">
-        <div class="box">
-          <strong>Liberal</strong>
-          <p class="small">Direitos de liberdade e contenção do Estado.</p>
-        </div>
-        <div class="box">
-          <strong>Social</strong>
-          <p class="small">Direitos prestacionais e intervenção estatal.</p>
-        </div>
-        <div class="box">
-          <strong>Democrático</strong>
-          <p class="small">Participação, pluralismo e legitimidade constitucional.</p>
+        <div class="box"><strong>Antecedentes</strong><p class="small">Costumes, pactos, cartas e instituições antigas ou medievais.</p></div>
+        <div class="box"><strong>Modernidade</strong><p class="small">Estado organizado juridicamente, direitos e limites ao poder político.</p></div>
+        <div class="box alt"><strong>Critério</strong><p class="small">Não perguntar só se havia regra; perguntar quem era limitado e como o limite valia.</p></div>
+      </div>
+    </section>
+
+    <section class="slide banded" data-slide="8/20" data-alvo="19:32">
+      <div class="block-band"><span>Bloco 2 · matrizes</span><span class="clock">alvo 19:32</span></div>
+      <p class="kicker">Formação moderna</p>
+      <h2>Inglaterra, Estados Unidos e França respondem de modos diferentes ao problema do poder</h2>
+      <div class="table compacta">
+        <div class="head">Matriz</div><div class="head">Problema dominante</div><div class="head">Contribuição institucional</div>
+        <div><strong>Inglesa</strong></div><div>Conter a Coroa.</div><div>Parlamento, leis, precedentes e convenções.</div>
+        <div><strong>Estadunidense</strong></div><div>Submeter também a lei a limites.</div><div>Constituição escrita, rigidez e controle judicial.</div>
+        <div><strong>Francesa</strong></div><div>Romper com o Antigo Regime.</div><div>Direitos, soberania popular e poder constituinte.</div>
+      </div>
+    </section>
+
+    <section class="slide banded" data-slide="9/20" data-alvo="19:42">
+      <div class="block-band"><span>Bloco 2 · Inglaterra</span><span class="clock">alvo 19:42</span></div>
+      <p class="kicker">Matriz inglesa</p>
+      <h2>Limitar o rei não significou incluir imediatamente toda a população</h2>
+      <div class="grid-2">
+        <div class="box"><strong>Ganho</strong><p class="small">Tributação, legislação e força militar passam a encontrar freios e autorização parlamentar.</p></div>
+        <div class="box alt"><strong>Limite</strong><p class="small">O fortalecimento do Parlamento não se confunde com democracia universal ou igualdade social.</p></div>
+      </div>
+      <p class="footer">A Constituição britânica não está codificada em um único texto; isso separa constitucionalismo de documento solene.</p>
+    </section>
+
+    <section class="slide banded" data-slide="10/20" data-alvo="19:52">
+      <div class="block-band"><span>Bloco 2 · Estados Unidos</span><span class="clock">alvo 19:52</span></div>
+      <p class="kicker">Matriz estadunidense</p>
+      <h2>Supremacia constitucional só é efetiva quando a lei contrária pode ser afastada</h2>
+      <div class="grid-3">
+        <div class="box"><strong>Constituição escrita</strong><p class="small">Texto superior à legislação ordinária.</p></div>
+        <div class="box"><strong>Rigidez</strong><p class="small">Mudança exige procedimento mais difícil que a lei comum.</p></div>
+        <div class="box alt"><strong>Controle</strong><p class="small"><em>Marbury v. Madison</em> simboliza o controle judicial da constitucionalidade.</p></div>
+      </div>
+      <p class="footer">MENDES; BRANCO, 2018: o controle judicial dá consequência prática à supremacia constitucional.</p>
+    </section>
+
+    <section class="slide banded" data-slide="11/20" data-alvo="20:02">
+      <div class="block-band"><span>Bloco 2 · França</span><span class="clock">alvo 20:02</span></div>
+      <p class="kicker">Matriz francesa</p>
+      <h2>Direitos e separação de Poderes entram na linguagem constitucional da Revolução</h2>
+      <div class="visual-layout">
+        <div class="quote">“Toda sociedade na qual a garantia dos direitos não é assegurada, nem a separação dos Poderes determinada, não tem Constituição.”<br><span class="micro">Declaração dos Direitos do Homem e do Cidadão, 1789, art. 16.</span></div>
+        <div class="stack">
+          <div class="box compact"><strong>Contribuição</strong><p class="small">Declaração de direitos, cidadania e soberania popular.</p></div>
+          <div class="box alt compact"><strong>Tensão</strong><p class="small">A supremacia do Parlamento retardou a Constituição como norma controladora da própria lei.</p></div>
         </div>
       </div>
     </section>
 
-    <section class="slide" data-slide="7/10">
+    <section class="slide banded" data-slide="12/20" data-alvo="20:20">
+      <div class="block-band"><span>Bloco 3 · tensão histórica</span><span class="clock">alvo 20:20</span></div>
+      <p class="kicker">Constitucionalismo liberal</p>
+      <h2>Liberdade e igualdade formal foram conquistas reais, mas não resolveram a desigualdade material</h2>
+      <div class="grid-2">
+        <div class="box"><strong>Contra o absolutismo</strong><p class="small">Legalidade, direitos civis, propriedade, representação e contenção da autoridade pessoal.</p></div>
+        <div class="box alt"><strong>Na sociedade burguesa</strong><p class="small">Propriedade e liberdade contratual conviveram com diferenças concretas de riqueza, trabalho e participação.</p></div>
+      </div>
+      <p class="footer">A crítica não apaga a conquista liberal; mostra por que sua promessa de igualdade exigiu novas respostas constitucionais.</p>
+    </section>
+
+    <section class="slide banded" data-slide="13/20" data-alvo="20:30">
+      <div class="block-band"><span>Bloco 3 · camadas</span><span class="clock">alvo 20:30</span></div>
+      <p class="kicker">Transformações do constitucionalismo</p>
+      <h2>O Estado deixa de ser apenas contido: passa também a ser cobrado</h2>
+      <div class="grid-3">
+        <div class="box"><strong>Liberal</strong><p class="small">Como impedir o poder arbitrário?</p></div>
+        <div class="box"><strong>Social</strong><p class="small">Como enfrentar desigualdades que a liberdade formal não corrige?</p></div>
+        <div class="box alt"><strong>Democrático</strong><p class="small">Como combinar maioria, pluralismo, participação e direitos?</p></div>
+      </div>
+    </section>
+
+    <section class="slide banded" data-slide="14/20" data-alvo="20:40">
+      <div class="block-band"><span>Bloco 3 · CF/88</span><span class="clock">alvo 20:40</span></div>
+      <p class="kicker">Constituição brasileira</p>
+      <h2>Os arts. 1º, 3º e 5º combinam compromissos liberais, sociais e democráticos</h2>
+      <div class="table compacta">
+        <div class="head">Dispositivo</div><div class="head">Compromisso</div><div class="head">Exemplo de tensão</div>
+        <div><strong>Art. 1º</strong></div><div>Dignidade, trabalho, livre iniciativa e pluralismo.</div><div>Economia e democracia não são temas separados.</div>
+        <div><strong>Art. 3º</strong></div><div>Sociedade justa e redução das desigualdades.</div><div>O Estado tem tarefas, não apenas proibições.</div>
+        <div><strong>Art. 5º</strong></div><div>Liberdade, igualdade, propriedade e função social.</div><div>Direito de propriedade não é um poder sem conformação constitucional.</div>
+      </div>
+    </section>
+
+    <section class="slide banded" data-slide="15/20" data-alvo="20:50">
+      <div class="block-band"><span>Bloco 3 · democracia</span><span class="clock">alvo 20:50</span></div>
+      <p class="kicker">Constitucionalismo democrático</p>
+      <h2>Democracia precisa de maioria, mas não se esgota nela</h2>
+      <div class="grid-2">
+        <div class="box"><strong>Regra do jogo</strong><p class="small">Eleições, participação, representação, debate público e alternância.</p></div>
+        <div class="box alt"><strong>Limite do jogo</strong><p class="small">Direitos fundamentais não podem ser eliminados por uma maioria circunstancial.</p></div>
+      </div>
+      <p class="footer">BARROSO, 2020: a Constituição organiza o governo da maioria e protege direitos contra a vontade ocasional de quem tem mais votos.</p>
+    </section>
+
+    <section class="slide banded" data-slide="16/20" data-alvo="21:00">
+      <div class="block-band"><span>Bloco 4 · disciplina</span><span class="clock">alvo 21:00</span></div>
       <p class="kicker">Direito Constitucional</p>
-      <h2>A disciplina estuda Constituição como norma, instituição e prática</h2>
+      <h2>Estudar Constituição é estudar norma, instituição e prática</h2>
       <div class="grid-3">
-        <div class="box">
-          <strong>Geral</strong>
-          <p class="small">Categorias comuns: Constituição, poder, direitos, interpretação.</p>
-        </div>
-        <div class="box">
-          <strong>Especial</strong>
-          <p class="small">Estudo de uma ordem constitucional concreta.</p>
-        </div>
-        <div class="box">
-          <strong>Comparado</strong>
-          <p class="small">Diferenças e aproximações entre experiências constitucionais.</p>
-        </div>
+        <div class="box"><strong>Geral</strong><p class="small">Constituição, direitos, poder, supremacia e interpretação.</p></div>
+        <div class="box"><strong>Especial</strong><p class="small">Uma Constituição concreta: nesta aula, a CF/88.</p></div>
+        <div class="box alt"><strong>Comparado</strong><p class="small">Diferenças e aproximações entre experiências constitucionais.</p></div>
       </div>
     </section>
 
-    <section class="slide" data-slide="8/10">
-      <p class="kicker">Problema contemporâneo</p>
-      <h2>Constituições nacionais enfrentam problemas transnacionais</h2>
-      <div class="visual-layout">
-        <div class="stack">
-          <div class="box compact">
-            <strong>Pressões atuais</strong>
-            <p class="small">Direitos humanos, meio ambiente, tecnologia, migrações, mercados globais.</p>
-          </div>
-          <div class="box compact">
-            <strong>Ponto crítico</strong>
-            <p class="small">O transconstitucionalismo não substitui a Constituição; tensiona sua suficiência.</p>
-          </div>
-        </div>
-        <div class="image-slot" role="img" aria-label="Espaço reservado para imagem ilustrativa sobre problemas transnacionais e constituições nacionais">
-          <p class="image-slot-label">Espaço para imagem</p>
-          <p class="image-prompt"><strong>Prompt:</strong> ilustração conceitual sóbria de um mapa-múndi parcialmente sobreposto a páginas constitucionais e linhas de conexão entre países, sugerindo direitos humanos, meio ambiente e tecnologia; estilo editorial acadêmico, sem texto legível; proporção 16:9.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" data-slide="9/10">
-      <p class="kicker">Atividade pontuada</p>
-      <h2>Debate orientado</h2>
-      <p class="activity-question">“Problemas globais ainda podem ser resolvidos por Constituições nacionais?”</p>
+    <section class="slide banded" data-slide="17/20" data-alvo="21:12">
+      <div class="block-band"><span>Bloco 4 · atividade qualitativa</span><span class="clock">alvo 21:12</span></div>
+      <p class="kicker">Roteiro de uma página</p>
+      <h2>Saia de um fato e construa uma pergunta constitucional verificável</h2>
       <div class="grid-2">
-        <div class="box">
-          <strong>Grupo A</strong>
-          <p class="small">Defende a centralidade da Constituição nacional.</p>
-        </div>
-        <div class="box">
-          <strong>Grupo B</strong>
-          <p class="small">Defende a insuficiência da Constituição nacional isolada.</p>
-        </div>
+        <div class="box"><strong>Escolha</strong><p class="small">Uma notícia, decisão pública ou proposta normativa recente.</p></div>
+        <div class="box alt"><strong>Entregue</strong><p class="small">fato e fonte · pergunta · dois dispositivos · tipo de limite · uma dúvida para o debate.</p></div>
       </div>
+      <p class="activity-question">Não é uma petição: é um exercício de leitura constitucional do poder.</p>
     </section>
 
-    <section class="slide" data-slide="10/10">
-      <p class="kicker">Fechamento</p>
-      <h2>Três ideias para levar ao Módulo 2</h2>
-      <div class="visual-layout">
-        <div class="stack">
-          <div class="box compact">
-            <strong>1</strong>
-            <p class="small">Constitucionalismo, em sentido rigoroso, é moderno.</p>
-          </div>
-          <div class="box compact">
-            <strong>2</strong>
-            <p class="small">Constituição limita, organiza e legitima o poder.</p>
-          </div>
-          <div class="box compact">
-            <strong>3</strong>
-            <p class="small">Antes de estudar Poder Constituinte, é preciso saber o que é Constituição.</p>
-          </div>
-        </div>
-        <div class="image-slot" role="img" aria-label="Espaço reservado para imagem ilustrativa sobre a passagem para Teoria Geral da Constituição">
-          <p class="image-slot-label">Espaço para imagem</p>
-          <p class="image-prompt"><strong>Prompt:</strong> imagem editorial minimalista de uma Constituição aberta iluminada sobre uma mesa, com formas abstratas sugerindo poder, direitos e interpretação ao fundo; atmosfera acadêmica, sóbria, sem texto legível; proporção 16:9.</p>
-        </div>
+    <section class="slide banded optional" data-slide="18/20" data-alvo="21:24">
+      <div class="block-band"><span>Bloco 4 · treino</span><span class="opt">opcional</span><span class="clock">alvo 21:24</span></div>
+      <p class="kicker">Questão-modelo</p>
+      <h2>Qual resposta melhor traduz o constitucionalismo democrático?</h2>
+      <div class="choice">
+        <div>A. A maioria eleita pode limitar direitos porque expressa diretamente o povo.</div>
+        <div>B. A Constituição só organiza órgãos; direitos são tema secundário.</div>
+        <div class="correct">C. A Constituição organiza a decisão majoritária e protege direitos contra abusos dos poderes constituídos.</div>
+        <div>D. A separação de Poderes elimina conflitos entre instituições.</div>
       </div>
+      <p class="notice gabarito">Gabarito: C. A Constituição autoriza a decisão democrática, mas também vincula os poderes e protege direitos. Pressione <strong>G</strong> apenas depois do debate.</p>
     </section>
-    <section class="slide" data-slide="Transparência">
-      <p class="kicker">Transparência</p>
-      <h2>Declaração de uso de IA generativa</h2>
-      <p class="lead">Material organizado para uso docente com apoio de Inteligência Artificial Generativa (Codex/OpenAI) para curadoria, estruturação editorial da área e preparação de publicação local.</p>
-      <p class="footer">Fontes, seleção do conteúdo e responsabilidade final permanecem do docente. Diretrizes observadas: Portaria CNPq nº 2.664/2026.</p>
-    </section>  </main>
+
+    <section class="slide banded" data-slide="19/20" data-alvo="21:35">
+      <div class="block-band"><span>Bloco 4 · síntese</span><span class="clock">alvo 21:35</span></div>
+      <p class="kicker">Para levar à próxima aula</p>
+      <h2>Três controles para pensar qualquer problema constitucional</h2>
+      <div class="grid-3">
+        <div class="box"><strong>1. Fonte</strong><p class="small">Que dispositivo constitucional está em jogo?</p></div>
+        <div class="box"><strong>2. Poder</strong><p class="small">Quem decide, com qual competência e sob qual controle?</p></div>
+        <div class="box alt"><strong>3. Pessoa</strong><p class="small">Que direito, grupo ou condição de igualdade será afetado?</p></div>
+      </div>
+      <p class="footer">Próxima aula: conceitos e sentidos de Constituição — Lassalle, Schmitt e Kelsen.</p>
+    </section>
+
+    <section class="slide banded tight" data-slide="20/20" data-alvo="21:45">
+      <div class="block-band"><span>Fontes e transparência</span><span class="clock">alvo 21:45</span></div>
+      <p class="kicker">Leitura e responsabilidade</p>
+      <h2>Fontes efetivamente utilizadas</h2>
+      <div class="source-list">
+        <div><strong>BRASIL.</strong> Constituição da República Federativa do Brasil de 1988, especialmente preâmbulo e arts. 1º a 5º.</div>
+        <div><strong>BARROSO, Luís Roberto.</strong> <em>Curso de direito constitucional contemporâneo</em>. 9. ed., 2020.</div>
+        <div><strong>MENDES, Gilmar Ferreira; BRANCO, Paulo Gustavo Gonet.</strong> <em>Curso de direito constitucional</em>. 13. ed., 2018.</div>
+      </div>
+      <p class="declaracao-iag">* Material elaborado com apoio de Inteligência Artificial Generativa (Codex/OpenAI) para organização e estruturação do texto, geração de esquema ou roteiro de slides e preparação visual ou adaptação didática. Fontes conferidas e responsabilidade integral do docente. Diretrizes: Portaria CNPq nº 2.664/2026.</p>
+    </section>
+  </main>
+
+  <div class="hud" id="hud" aria-hidden="true">
+    <div class="hud-item"><span class="hud-label">Lâmina</span><span class="hud-value" id="hud-slide">1/20</span></div>
+    <div class="hud-item"><span class="hud-label">Alvo</span><span class="hud-value" id="hud-alvo">18:30</span></div>
+    <div class="hud-item"><span class="hud-label">Agora</span><span class="hud-value" id="hud-agora">--:--</span></div>
+    <div class="hud-item"><span class="hud-label">Ritmo</span><span class="hud-value" id="hud-delta">-</span></div>
+    <p class="hud-help">setas navegam · F tela cheia · G gabarito · N notas · O oculta opcionais · M limpa tudo · H oculta este painel</p>
+  </div>
+
+  <script>
+    (function () {
+      var slides = [].slice.call(document.querySelectorAll('.slide'));
+      var hudSlide = document.getElementById('hud-slide');
+      var hudAlvo = document.getElementById('hud-alvo');
+      var hudAgora = document.getElementById('hud-agora');
+      var hudDelta = document.getElementById('hud-delta');
+      var atual = 0;
+
+      function visiveis() { return slides.filter(function (slide) { return slide.offsetParent !== null; }); }
+      function minutos(valor) { var partes = (valor || '').split(':'); return partes.length === 2 ? (+partes[0] * 60) + (+partes[1]) : null; }
+      function atualizarHud(slide, indice, total) {
+        if (!slide) return;
+        var alvo = slide.getAttribute('data-alvo') || '--:--';
+        var agora = new Date();
+        var diferenca = minutos(alvo) === null ? null : (agora.getHours() * 60 + agora.getMinutes()) - minutos(alvo);
+        hudSlide.textContent = (indice + 1) + '/' + total;
+        hudAlvo.textContent = alvo;
+        hudAgora.textContent = ('0' + agora.getHours()).slice(-2) + ':' + ('0' + agora.getMinutes()).slice(-2);
+        hudDelta.className = 'hud-value';
+        if (diferenca === null) hudDelta.textContent = '-';
+        else if (diferenca > 2) { hudDelta.textContent = '+' + diferenca + ' min'; hudDelta.classList.add('late'); }
+        else if (diferenca < -2) { hudDelta.textContent = diferenca + ' min'; hudDelta.classList.add('ahead'); }
+        else hudDelta.textContent = 'em dia';
+      }
+      function irPara(indice) {
+        var lista = visiveis();
+        if (!lista.length) return;
+        atual = Math.max(0, Math.min(lista.length - 1, indice));
+        lista[atual].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        atualizarHud(lista[atual], atual, lista.length);
+      }
+      function slideNaTela() {
+        var lista = visiveis(); var melhor = lista[0]; var distancia = Infinity;
+        lista.forEach(function (slide) { var valor = Math.abs(slide.getBoundingClientRect().top); if (valor < distancia) { distancia = valor; melhor = slide; } });
+        return melhor;
+      }
+      document.addEventListener('keydown', function (evento) {
+        var tecla = evento.key;
+        if (tecla === 'ArrowRight' || tecla === 'ArrowDown' || tecla === 'PageDown' || tecla === ' ') { evento.preventDefault(); irPara(atual + 1); }
+        else if (tecla === 'ArrowLeft' || tecla === 'ArrowUp' || tecla === 'PageUp') { evento.preventDefault(); irPara(atual - 1); }
+        else if (tecla === 'Home') { evento.preventDefault(); irPara(0); }
+        else if (tecla === 'End') { evento.preventDefault(); irPara(visiveis().length - 1); }
+        else if (tecla === 'f' || tecla === 'F') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); }
+        else if (tecla === 'g' || tecla === 'G') document.body.classList.toggle('mostrar-gabarito');
+        else if (tecla === 'n' || tecla === 'N') document.body.classList.toggle('mostrar-notas');
+        else if (tecla === 'h' || tecla === 'H') document.body.classList.toggle('hud-off');
+        else if (tecla === 'o' || tecla === 'O') { var referencia = slideNaTela(); document.body.classList.toggle('hide-optional'); var lista = visiveis(); var novoIndice = lista.indexOf(referencia); irPara(novoIndice < 0 ? Math.min(atual, lista.length - 1) : novoIndice); }
+        else if (tecla === 'm' || tecla === 'M') { document.body.classList.toggle('sem-marcas'); document.body.classList.remove('mostrar-gabarito', 'mostrar-notas'); }
+      });
+      if ('IntersectionObserver' in window) {
+        var observador = new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (entrada) { if (entrada.isIntersecting) { var lista = visiveis(); var indice = lista.indexOf(entrada.target); if (indice >= 0) { atual = indice; atualizarHud(entrada.target, indice, lista.length); } } });
+        }, { threshold: .55 });
+        slides.forEach(function (slide) { observador.observe(slide); });
+      }
+      setInterval(function () { var lista = visiveis(); atualizarHud(lista[Math.min(atual, lista.length - 1)], Math.min(atual, lista.length - 1), lista.length); }, 20000);
+      irPara(0);
+    }());
+  </script>
 </body>
 </html>
