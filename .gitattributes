@@ -1,0 +1,17 @@
+# Padrao de fim de linha do repositorio area-do-professor.
+# O repositorio guarda LF. Editores do Windows podem salvar CRLF sem gerar diff falso.
+
+* text=auto eol=lf
+
+# Binarios nunca sao convertidos.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.svg text eol=lf
+*.pdf binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
