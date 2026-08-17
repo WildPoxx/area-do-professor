@@ -37,6 +37,9 @@
     .article-strip { display:flex; flex-wrap:wrap; gap:14px; margin-top:40px; }
     .article { padding:13px 16px; border:1px solid var(--line); background:var(--paper-warm); color:var(--accent); font-size:22px; font-weight:750; }
     @media print { body{background:white;} .deck{padding:0; gap:0;} .slide{box-shadow:none; page-break-after:always;} }
+    /* Curadoria Area do Professor: prompts de imagem nao sao publicados. Remover este bloco restaura a lamina original. */
+    .image-slot { display:none !important; }
+    .visual-layout { grid-template-columns:1fr !important; }
   </style>
 </head>
 <body>
