@@ -112,10 +112,10 @@ button.b:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .capa .selo{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
 .capa p{font-size:17px;margin:0 0 14px;max-width:56ch}
 .passos{display:flex;flex-direction:column;gap:12px;margin:22px 0 26px;padding:0;list-style:none;counter-reset:p}
-.passos li{counter-increment:p;display:flex;gap:13px;padding:13px 15px;background:var(--card);
+.passos li{counter-increment:p;position:relative;padding:13px 15px 13px 50px;background:var(--card);
   border-left:4px solid var(--accent-soft);box-shadow:var(--shadow);font-size:16px}
-.passos li::before{content:counter(p);flex:none;width:22px;font-weight:800;color:var(--accent);
-  font-variant-numeric:tabular-nums}
+.passos li::before{content:counter(p);position:absolute;left:15px;top:13px;width:22px;font-weight:800;
+  color:var(--accent);font-variant-numeric:tabular-nums}
 .aviso{margin:0 0 22px;padding:13px 16px;border-left:5px solid var(--alert);background:var(--alert-bg);
   color:var(--ink);font-size:15.5px}
 .placar{display:flex;align-items:baseline;gap:12px;margin:0 0 6px}
@@ -492,8 +492,8 @@ function capa(){
   <div class="capa">
     <p class="selo">IDPP · Administração · UniFamec · 2026.2</p>
     <h1>Treino para a avaliação formal</h1>
-    <p>Vinte e uma questões no formato da prova. As cinco primeiras são aquecimento sobre o
-    Módulo 1A, que <b>não cai</b>. As dezesseis seguintes são dos Módulos <b>1B</b> e <b>1D</b>,
+    <p>Vinte e duas questões no formato da prova. As cinco primeiras são aquecimento sobre o
+    Módulo 1A, que <b>não cai</b>. As dezessete seguintes são dos Módulos <b>1B</b> e <b>1D</b>,
     que é o conteúdo avaliado.</p>
     <ol class="passos">
       <li>Leia o enunciado e as quatro alternativas, e toque na que você escolheu. Só uma fica marcada; tocar de novo na mesma <b>desmarca</b>.</li>
