@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Treino da I Unidade | IDPP · Prof. Mario Bastos</title>
+  <meta name="theme-color" content="#123a6b" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101823" media="(prefers-color-scheme: dark)">
+</head>
+<body>
+<style>
+:root{
+  --paper:#f4f6fa; --card:#ffffff; --ink:#16202e; --muted:#5a6b80;
+  --accent:#123a6b; --accent-soft:#ccdaea; --line:#c6d3e2;
+  --alert:#b01f28; --alert-bg:#fbeaec; --alert-line:#e3aeb4;
+  --good:#12603f; --good-bg:#e6f2ec; --good-line:#a6cdb9;
+  --band:rgba(18,58,107,.08); --shadow:0 1px 2px rgba(22,32,46,.06),0 8px 24px rgba(22,32,46,.06);
+  --pick:#e8f0f9;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#101823; --card:#18222e; --ink:#e8eef5; --muted:#93a5ba;
+    --accent:#7aa8dd; --accent-soft:#24384f; --line:#2c3d52;
+    --alert:#f2909a; --alert-bg:#2d1a1e; --alert-line:#5c2f36;
+    --good:#7fcfa8; --good-bg:#12261f; --good-line:#2f5544;
+    --band:rgba(122,168,221,.12); --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    --pick:#1d2c3d;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101823; --card:#18222e; --ink:#e8eef5; --muted:#93a5ba;
+  --accent:#7aa8dd; --accent-soft:#24384f; --line:#2c3d52;
+  --alert:#f2909a; --alert-bg:#2d1a1e; --alert-line:#5c2f36;
+  --good:#7fcfa8; --good-bg:#12261f; --good-line:#2f5544;
+  --band:rgba(122,168,221,.12); --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  --pick:#1d2c3d;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Aptos","Inter","Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+  font-size:17px; line-height:1.45; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:660px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column}
+
+/* ---------- topo ---------- */
+.top{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.bar{height:4px;background:var(--accent-soft)}
+.bar span{display:block;height:100%;background:var(--accent);width:0;transition:width .25s ease}
+.meta{display:flex;align-items:center;gap:9px;padding:9px 18px;font-size:12.5px;
+  font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent)}
+.meta .conta{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.chip{padding:2px 9px;border:1px solid var(--line);border-radius:2px;background:var(--card);
+  font-size:11px;letter-spacing:.06em;color:var(--muted)}
+.chip.treino{color:var(--alert);border-color:var(--alert-line);background:var(--alert-bg)}
+
+/* ---------- corpo ---------- */
+main{flex:1;padding:22px 18px 26px}
+.base{margin:0 0 18px;padding:14px 16px;border-left:4px solid var(--accent-soft);
+  background:var(--card);box-shadow:var(--shadow);font-size:16px;color:var(--ink)}
+h1{font-size:26px;line-height:1.2;margin:0 0 6px;text-wrap:balance;letter-spacing:-.01em}
+h2.comando{font-size:21px;line-height:1.28;margin:0 0 20px;text-wrap:balance;font-weight:750;letter-spacing:-.01em}
+.lista{display:flex;flex-direction:column;gap:10px}
+.alt{display:flex;gap:12px;width:100%;text-align:left;padding:14px 15px;border:1px solid var(--line);
+  border-left:4px solid var(--line);background:var(--card);color:var(--ink);
+  font:inherit;font-size:16.5px;line-height:1.35;cursor:pointer;box-shadow:var(--shadow)}
+.alt .letra{flex:none;width:22px;font-weight:800;color:var(--muted)}
+.alt .corpo{flex:1;min-width:0}
+.alt:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.alt.marcada{background:var(--pick);border-left-color:var(--accent)}
+.alt.marcada .letra{color:var(--accent)}
+
+/* rótulos que dizem quem é quem */
+.rotulos{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:7px}
+.rot{display:none;padding:2px 8px;border-radius:2px;font-size:11px;font-weight:800;
+  letter-spacing:.07em;text-transform:uppercase;border:1px solid}
+.rot.escolha{color:var(--accent);border-color:var(--accent-soft);background:var(--band)}
+.rot.ok{color:var(--good);border-color:var(--good-line);background:var(--good-bg)}
+.alt.marcada .rot.escolha{display:inline-block}
+.conferido .alt.certa .rot.ok{display:inline-block}
+.conferido .alt.certa.marcada .rot.escolha{color:var(--good);border-color:var(--good-line);background:transparent}
+.conferido .alt.errada.marcada .rot.escolha{color:var(--alert);border-color:var(--alert-line);background:transparent}
+
+.alt .porque{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);
+  font-size:15px;line-height:1.45;color:var(--muted)}
+.conferido .alt .porque{display:block}
+.conferido .alt.certa{border-left-color:var(--good);background:var(--good-bg)}
+.conferido .alt.certa .letra{color:var(--good)}
+.conferido .alt.certa .porque{color:var(--good);border-top-color:var(--good-line)}
+.conferido .alt.errada.marcada{border-left-color:var(--alert);background:var(--alert-bg)}
+.conferido .alt.errada.marcada .letra{color:var(--alert)}
+.conferido .alt.errada.marcada .porque{color:var(--alert);border-top-color:var(--alert-line)}
+.veredito{display:none;margin-top:18px;padding:13px 16px;border-left:5px solid var(--accent);
+  background:var(--band);font-size:15.5px}
+.conferido .veredito{display:block}
+.veredito b{color:var(--accent)}
+
+/* ---------- rodapé ---------- */
+.rodape{position:sticky;bottom:0;background:var(--paper);border-top:1px solid var(--line);
+  padding:12px 18px calc(12px + env(safe-area-inset-bottom));display:flex;gap:8px;align-items:center}
+button.b{font:inherit;font-weight:750;font-size:16px;padding:13px 16px;border:1px solid var(--accent);
+  background:var(--accent);color:var(--paper);cursor:pointer;border-radius:2px;white-space:nowrap}
+button.b.sec{background:transparent;color:var(--accent)}
+button.b.larga{flex:1;padding-left:10px;padding-right:10px}
+button.b.mini{font-size:14.5px;padding:13px 12px}
+button.b:disabled{opacity:.35;cursor:not-allowed}
+button.b:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* ---------- capa e fecho ---------- */
+.capa{padding:34px 18px 26px}
+.capa .selo{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+.capa p{font-size:17px;margin:0 0 14px;max-width:56ch}
+.passos{display:flex;flex-direction:column;gap:12px;margin:22px 0 26px;padding:0;list-style:none;counter-reset:p}
+.passos li{counter-increment:p;display:flex;gap:13px;padding:13px 15px;background:var(--card);
+  border-left:4px solid var(--accent-soft);box-shadow:var(--shadow);font-size:16px}
+.passos li::before{content:counter(p);flex:none;width:22px;font-weight:800;color:var(--accent);
+  font-variant-numeric:tabular-nums}
+.aviso{margin:0 0 22px;padding:13px 16px;border-left:5px solid var(--alert);background:var(--alert-bg);
+  color:var(--ink);font-size:15.5px}
+.placar{display:flex;align-items:baseline;gap:12px;margin:0 0 6px}
+.placar .n{font-size:56px;font-weight:800;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.placar .de{font-size:17px;color:var(--muted)}
+.rolagem{overflow-x:auto;margin:20px 0 24px;-webkit-overflow-scrolling:touch}
+table.rev{width:100%;min-width:330px;border-collapse:collapse;font-size:15px}
+table.rev th,table.rev td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+table.rev th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+table.rev td.st{font-weight:750;white-space:nowrap}
+td.st.ok{color:var(--good)} td.st.no{color:var(--alert)} td.st.vazio{color:var(--muted);font-weight:400}
+table.rev button{font:inherit;font-size:14px;padding:5px 10px;border:1px solid var(--line);
+  background:var(--card);color:var(--accent);cursor:pointer;border-radius:2px;font-weight:700}
+.creditos{margin:30px 0 0;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.oculto{display:none !important}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+@media (min-width:700px){ body{font-size:18px} h2.comando{font-size:24px} .alt{font-size:17.5px} .alt .porque{font-size:15.5px} }
+</style>
+
+<div class="wrap">
+  <div class="top oculto" id="topo">
+    <div class="bar"><span id="barra"></span></div>
+    <div class="meta">
+      <span id="bloco">Módulo 1B</span>
+      <span class="chip" id="nivel">fácil</span>
+      <span class="conta" id="conta">1 / 21</span>
+    </div>
+  </div>
+
+  <main id="palco"></main>
+
+  <div class="rodape oculto" id="rodape">
+    <button class="b sec mini" id="btVoltar" type="button">Voltar</button>
+    <button class="b sec mini oculto" id="btRefazer" type="button">Refazer</button>
+    <button class="b larga" id="btAcao" type="button">Conferir a resposta</button>
+  </div>
+</div>
+
+<script>
+const QUESTOES = [
+{bloco:"Aquecimento · 1A", treino:true, nivel:"não cai", id:"A1",
+ base:"Ao propor a <em>Teoria Pura do Direito</em>, Kelsen buscava responder com precisão a uma única pergunta: <b>esta norma vale?</b>",
+ comando:"O que Kelsen quis dizer com uma teoria “pura” do Direito?",
+ certa:3,
+ alts:[
+  {t:"Que só é Direito a norma cujo conteúdo seja justo segundo a moral vigente.",
+   p:"É a posição exatamente contrária. Se a validade dependesse do conteúdo moral, cada um julgaria por si mesmo se a norma vale — e ninguém conseguiria prever nada. Kelsen queria poder responder “esta norma vale?” olhando para <em>como ela foi produzida</em>, e não para se concordamos com ela. Isso não significa que o conteúdo não importe: significa que ele é outra pergunta, feita em outro momento."},
+  {t:"Que o Direito é moralmente superior às demais ciências e por isso não admite crítica.",
+   p:"“Pura” não é elogio: quer dizer <em>depurada</em>, limpa de outras disciplinas. E o efeito da teoria é o oposto de blindar o Direito contra a crítica. É justamente por separar validade de justiça que se torna possível dizer “esta lei vale <em>e</em> é ruim” — frase que, sem essa separação, seria contraditória."},
+  {t:"Que o Direito deve descrever o que os tribunais decidem de fato, e nada além disso.",
+   p:"O defeito está no <b>“e nada além disso”</b>. A pergunta de fundo é: qual é o objeto da ciência do Direito? A resposta é a <b>norma jurídica</b> — o texto jurídico escrito, a lei em sentido amplo. Decisões de tribunal também entram nesse universo, e em certos casos previstos passam a obrigar como se norma fossem; fora deles, elas indicam como a lei vem sendo aplicada, e não tomam o lugar da lei. Repare que observar o que de fato se decide não é o erro: observação é trabalho de qualquer ciência. O erro é <em>restringir</em> o Direito a isso, deixando de fora justamente aquilo contra o que as próprias decisões são medidas."},
+  {t:"Que a teoria estuda a norma como norma, sem misturar nela moral, política, religião ou economia.",
+   p:"<b>Correta.</b> Pura é depurada. Não porque moral, política e economia não importem, mas porque, misturadas dentro da mesma análise, impedem responder com precisão se a norma vale. É uma decisão de método: separar as perguntas para conseguir responder a cada uma."}]},
+
+{bloco:"Aquecimento · 1A", treino:true, nivel:"não cai", id:"A2",
+ base:"A ciência natural trabalha com o <em>ser</em>: se aquece, dilata. O Direito trabalha com o <em>dever-ser</em>: se matou, deve ser punido.",
+ comando:"Um homicida não foi punido. Isso invalida a norma penal?",
+ certa:0,
+ alts:[
+  {t:"Não, porque a norma prescreve o que deve acontecer, e não descreve o que sempre acontece.",
+   p:"<b>Correta.</b> É a distinção entre ser e dever-ser. A lei natural descreve: se o metal aquece e não dilata, a lei estava errada. A norma jurídica prescreve: se matou, deve ser punido — e a punição pode falhar por mil razões sem que a norma mude uma vírgula. Confundir as duas é o erro que esta questão isola."},
+  {t:"Sim, porque uma norma que não produz o efeito previsto deixa de existir.",
+   p:"Trata a norma como se fosse lei da natureza, que um único contraexemplo refuta. Se bastasse um descumprimento para extinguir a regra, nenhuma norma sobreviveria ao primeiro infrator. Repare na ironia: a norma só é acionada <em>justamente quando</em> alguém a descumpre — o descumprimento é o caso de aplicação dela, não a prova de que ela não existe."},
+  {t:"Sim, porque no Direito o descumprimento reiterado revoga automaticamente a regra.",
+   p:"Não existe essa revogação automática no nosso sistema. Descumprimento generalizado é falta de <b>eficácia social</b>, um dos assuntos do Módulo 1D — e lá está o alerta que interessa a quem administra: a força continua guardada, e no dia em que a fiscalização apertar a norma se aplica com todos os efeitos, inclusive sobre o período em que “ninguém cumpria”."},
+  {t:"Não, porque a punição é mera recomendação dirigida ao juiz.",
+   p:"Chega à conclusão certa pelo caminho errado, e numa prova isso é erro. A norma jurídica não recomenda: <b>manda</b>. Imperatividade é a primeira das seis características do Módulo 1D, e é ela que separa a norma de um conselho bem-intencionado. A punição pode não vir; ainda assim ela era devida."}]},
+
+{bloco:"Aquecimento · 1A", treino:true, nivel:"não cai", id:"A3",
+ base:"Os réus alegaram ter cumprido a lei vigente em seu país, e que ninguém pode ser punido por obedecer ao Direito.",
+ comando:"Por que o tribunal de Nuremberg rejeitou a defesa do cumprimento da lei?",
+ certa:2,
+ alts:[
+  {t:"Porque as normas alemãs tinham vício de forma e nunca chegaram a ser válidas.",
+   p:"É exatamente o que o tribunal <em>não</em> disse, e é o que torna o caso incômodo até hoje. Aquelas normas foram produzidas por quem tinha competência, pelo procedimento previsto: cada peça formal estava no lugar. Veja o caminho que se seguiu, bem diferente deste: entre os <b>Princípios de Nuremberg</b>, formulados pela Comissão de Direito Internacional da ONU em 1950, está o de que a responsabilidade internacional existe <em>ainda que o direito interno não puna o ato</em>. Não se disse que a lei alemã era inválida por vício — disse-se que ela não era a última palavra."},
+  {t:"Porque a lei estrangeira não obriga quem está fora do próprio território.",
+   p:"Muda o problema de lugar. Não havia questão territorial alguma: os atos foram praticados no próprio país dos réus, sob a lei do próprio país, contra pessoas que ali estavam — a defesa era precisamente essa. E é aí que incide o princípio citado acima: o fato de o direito de um país não considerar criminoso determinado ato <em>não afasta</em> a responsabilidade internacional por ele. Territorialidade, que o Módulo 1D estuda, não resolve nada aqui."},
+  {t:"Porque existe um limite de conteúdo que nenhuma forma legaliza, e os crimes contra a humanidade passaram a ser categoria jurídica julgável.",
+   p:"<b>Correta.</b> Ao recusar a defesa, o tribunal fez algo que o Direito não havia feito com essa nitidez: tratou como categoria <em>jurídica</em>, julgável e punível, aquilo que até então era condenação moral. Ao lado dos crimes de guerra e dos crimes contra a paz, reconheceram-se os <b>crimes contra a humanidade</b> — assassinato, extermínio, escravidão e perseguição por motivos políticos, raciais ou religiosos. É a virada que interessa a este curso: um Estado não torna lícito, por lei própria, o que é crime contra a humanidade."},
+  {t:"Porque os vencedores de uma guerra podem julgar os vencidos independentemente de qualquer norma.",
+   p:"É a leitura que o módulo desmonta, e o que veio depois a desmente. Se tivesse sido só força do vencedor, nada de jurídico teria sobrado do caso. Sobrou: em 1950 a ONU formulou os Princípios de Nuremberg, que se desprenderam daqueles réus e viraram direito — inclusive o de que cumprir ordem superior não exime quem teve possibilidade moral de escolher. Daí seguiram a Declaração de 1948, a convenção sobre genocídio, tratados, cortes, e meio século depois um tribunal permanente, existente <em>antes</em> dos fatos que julga."}]},
+
+{bloco:"Aquecimento · 1A", treino:true, nivel:"não cai", id:"A4",
+ base:"Positivismo jurídico separa o Direito que <b>é</b> do Direito que <b>deveria ser</b>.",
+ comando:"Que ganho o positivismo jurídico traz a quem quer mudar uma lei?",
+ certa:1,
+ alts:[
+  {t:"Permite deixar de cumprir a lei injusta enquanto ela não for revogada.",
+   p:"Não é a posição de ninguém, e vale ver por quê. O <b>jusnaturalista</b> sustenta algo mais forte: como registra Pinto Martins, para essa corrente “a lei deve ser justa para ser lei; se não o for, não tem validade” — ela nem chega a ser lei. O <b>positivista</b> sustenta o contrário: ela vale, e por isso mesmo pode ser criticada e reformada. Esta alternativa fica no meio do caminho, reconhecendo a validade e ao mesmo tempo autorizando o descumprimento — e é exatamente aí que ela erra."},
+  {t:"Permite dizer que uma lei é válida <em>e</em> é injusta, e assim reformá-la sem fingir que nunca valeu.",
+   p:"<b>Correta.</b> Separar validade de justiça é o núcleo da posição positivista, e é o que torna essa frase possível sem contradição. E é ela que sustenta a reforma: muda-se a lei para frente, sem precisar sustentar que ela nunca valeu e sem desfazer os negócios que se fizeram sob ela enquanto valia."},
+  {t:"Permite que o juiz corrija o texto da lei sempre que ele contrarie sua convicção moral.",
+   p:"Dissolve a norma na convicção de quem julga. Cada juiz tem as suas; se cada um corrigir o texto pelas suas, ninguém prevê nada, e quem administra passa a depender de qual juiz calhar, não da regra escrita. Note que é o oposto exato do ganho que a questão pergunta: em vez de tornar a crítica possível, retira o parâmetro contra o qual criticar."},
+  {t:"Permite tratar toda lei vigente como justa, encerrando a discussão.",
+   p:"Inverte o ganho e apaga a crítica. Validade nunca foi certificado de justiça: dizer que uma norma vale é dizer que foi posta conforme o sistema, não que seja boa. E a história produziu resposta técnica a esse erro — em 1946, <b>Gustav Radbruch</b> formulou a tese de que, quando o conflito entre a lei e a justiça se torna insuportável e falta até a tentativa de fazer justiça, a lei perde o caráter de direito. Tribunais alemães vieram a aplicá-la de fato, depois da guerra e depois da reunificação."}]},
+
+{bloco:"Aquecimento · 1A", treino:true, nivel:"não cai", id:"A5",
+ base:"Tratar a humanidade, na própria pessoa e na de qualquer outro, sempre também como fim, e <b>nunca meramente como meio</b>.",
+ comando:"O que a exigência kantiana proíbe numa relação de trabalho?",
+ certa:3,
+ alts:[
+  {t:"Proíbe contratar, avaliar e dispensar pessoas, por serem atos de instrumentalização.",
+   p:"Lê a fórmula como se ela proibisse a vida econômica inteira. A palavra que muda tudo é <b>meramente</b>: a exigência não é “nunca como meio”, é “nunca <em>apenas</em> como meio”. E a própria Constituição mostra que a contradição suposta pela alternativa não existe: ela põe entre os fundamentos da República, um ao lado do outro, a <b>dignidade da pessoa humana</b> e os <b>valores sociais do trabalho e da livre iniciativa</b>."},
+  {t:"Proíbe qualquer decisão gerencial que produza prejuízo a um trabalhador.",
+   p:"A fórmula não mede o resultado, mede o tratamento. Pinto Martins chega a inverter o raciocínio desta alternativa: é a <em>falta</em> de trabalho que viola a dignidade, porque sem trabalho a pessoa não consegue prover o próprio sustento. Uma demissão pode prejudicar muito e respeitar integralmente a exigência, se a pessoa foi tratada como pessoa; e um tratamento sem prejuízo material nenhum pode violá-la, se reduz alguém a instrumento."},
+  {t:"Proíbe que a empresa considere a produtividade como critério de decisão.",
+   p:"Produtividade é critério legítimo, e nenhuma organização sobrevive sem medir o que produz. A distinção kantiana que resolve isto é entre <b>preço</b> e <b>dignidade</b>: o que tem preço admite equivalente e pode ser trocado por outra coisa de igual valor; o que tem dignidade está acima de todo preço e não admite equivalente. Medir o que alguém produz é atribuir preço ao <em>trabalho</em>. O que não se pode é tratar a <em>pessoa</em> como algo que tem preço."},
+  {t:"Proíbe <em>reduzir</em> a pessoa à sua utilidade para outro, sem impedir contratar, avaliar ou dispensar.",
+   p:"<b>Correta.</b> Sempre <em>também</em> como fim: a pessoa pode entrar em relações de utilidade sem se esgotar nelas. É dessa exigência que descende a ideia de <b>dignidade da pessoa humana</b>, que a Constituição de 1988 traz entre os fundamentos da República — não como enfeite de abertura, mas como o valor a partir do qual o resto se interpreta."}]},
+
+{bloco:"Módulo 1B", nivel:"fácil", id:"B1",
+ base:"Cumprimentar ao chegar; manter o uniforme limpo, conforme o manual interno; usar touca para manipular alimento, conforme norma sanitária.",
+ comando:"Das três regras da padaria, o que faz da terceira uma norma jurídica?",
+ certa:2,
+ alts:[
+  {t:"Estar escrita, ao contrário das outras duas.",
+   p:"O manual interno da padaria também está escrito, e não é norma jurídica — a própria comparação do enunciado derruba esta alternativa. A forma escrita ajuda a provar o que a regra diz, e não é o que a torna jurídica: existem normas não escritas, e existem montanhas de regras escritas que não obrigam ninguém para além de quem as escreveu."},
+  {t:"Referir-se à saúde pública, tema mais grave que os demais.",
+   p:"A gravidade do assunto não transforma regra em norma jurídica. Há normas jurídicas sobre assuntos triviais — horário de funcionamento, tamanho de placa — e há regras morais gravíssimas que o Direito simplesmente não alcança. O critério nunca foi a importância do tema, e sim de onde a regra vem e o que acontece quando alguém a descumpre."},
+  {t:"O descumprimento dela autoriza uma consequência que uma autoridade pública pode impor com base em norma do Estado — multa, e até interdição.",
+   p:"<b>Correta.</b> As três são regras de conduta e as três dizem o que deve ser feito. A diferença aparece quando alguém desobedece — e repare que não basta haver consequência: o manual interno também tem a sua, a advertência do patrão. O que decide é <em>de onde vem</em> a regra e <em>quem</em> pode cobrá-la. O manual obriga os funcionários daquela padaria; a norma sanitária pertence ao sistema jurídico e é cobrada por autoridade pública, com multa e, na reincidência, interdição."},
+  {t:"Ter sido aceita por todos os funcionários da padaria.",
+   p:"Inverte a heteronomia. A norma jurídica obriga precisamente porque <em>não</em> depende de aceitação: vale para o convicto e para o inconformado. Se a aceitação dos funcionários fosse o critério, a regra da touca deixaria de valer no dia em que a equipe mudasse de ideia — e a vigilância continuaria multando exatamente como antes."}]},
+
+{bloco:"Módulo 1B", nivel:"fácil", id:"B2",
+ comando:"Um funcionário alega que não cumpre a norma sanitária por discordar dela. Que elemento do conceito de norma jurídica essa alegação ignora?",
+ certa:0,
+ alts:[
+  {t:"A obrigatoriedade independente de concordância: a norma não pede adesão.",
+   p:"<b>Correta.</b> A norma não pede adesão e não pergunta se você a considera necessária: vale para o convicto e para o inconformado do mesmo jeito. É por isso que “eu não concordo com essa exigência” nunca funcionou como defesa — nem do funcionário diante da empresa, nem da empresa diante do fiscal. Discordar é legítimo e continua sendo, mas se resolve mudando a norma, não descumprindo."},
+  {t:"O reconhecimento pelo Estado, que depende da adesão dos destinatários.",
+   p:"O reconhecimento pelo Estado não tem relação com a adesão de quem obedece. Ele quer dizer outra coisa: que a regra pertence ao sistema jurídico, tendo sido posta por quem podia, do jeito devido. É justamente o que separa a norma sanitária do manual interno da padaria — e essa qualidade não aumenta nem diminui conforme as pessoas concordem."},
+  {t:"A consequência exigível, que só se aplica a quem tenha concordado antes.",
+   p:"Se a consequência dependesse de concordância prévia, bastaria discordar para ficar imune — e a norma deixaria de alcançar exatamente quem ela mais precisa alcançar, que é quem não quer cumpri-la. A consequência é exigível de todos que estejam na situação descrita, tenham ou não opinião formada sobre ela."},
+  {t:"A generalidade, que faz a norma valer apenas para quem a considera necessária.",
+   p:"A definição está invertida. Generalidade quer dizer que a norma vale para <em>todos</em> que estiverem naquela situação, e não para pessoas determinadas. Ela olha para a situação — quem manipula alimento —, jamais para a opinião de quem está nela."}]},
+
+{bloco:"Módulo 1B", nivel:"fácil", id:"B3",
+ base:"A moral é unilateral e autônoma. O Direito é bilateral e heterônomo.",
+ comando:"O que distingue a regra moral da norma jurídica?",
+ certa:3,
+ alts:[
+  {t:"A moral é escrita e a norma jurídica é costumeira.",
+   p:"Troca os termos e erra os dois lados. A forma escrita não separa uma coisa da outra: há códigos de ética escritos que são moral, e há normas jurídicas que não estão em nenhum texto. O critério é outro — de que lado nasce a regra, e se existe alguém com poder de cobrá-la."},
+  {t:"A moral obriga a todos, e a norma jurídica só a quem a aceita.",
+   p:"Está exatamente invertido, e vale guardar por qual palavra. Quem depende de aceitação é a moral, que é <b>autônoma</b>: vale pela adesão de quem a acolhe. A norma jurídica é <b>heterônoma</b> — vem de fora e obriga mesmo quem discorda, e é aí que ela dói."},
+  {t:"A moral admite sanção organizada; a norma jurídica admite apenas reprovação social.",
+   p:"Os polos estão trocados. Sanção organizada — com quem a aplique, procedimento para aplicá-la e possibilidade de defesa — é do Direito. Da moral resulta reprovação: pode ser durísima e custar caro em reputação, e ninguém a executa, porque não há a quem recorrer para exigi-la."},
+  {t:"A moral olha só para quem age e vale pela adesão; a norma cria o dever e, junto, o poder de exigir, valha ou não a adesão.",
+   p:"<b>Correta.</b> São dois pares, e convém guardá-los juntos. <em>Unilateral × bilateral:</em> a moral só olha para quem deve cumprir; a norma cria o dever e, no mesmo gesto, o poder de exigir. <em>Autônoma × heterônoma:</em> a moral vale pela adesão de quem a aceita; a norma vale queira você ou não."}]},
+
+{bloco:"Módulo 1B", nivel:"médio", id:"B4",
+ comando:"Numa cidade em que todos cumprem a norma sanitária, e a vigilância nunca multou ninguém, a norma perdeu coercibilidade?",
+ certa:1,
+ alts:[
+  {t:"Sim: coercibilidade é o uso da força, e sem multa não houve uso.",
+   p:"É a confusão central do módulo, e vale desfazê-la devagar. Coercibilidade é a força <em>podendo</em> ser usada; a força <em>sendo</em> usada, com base em norma e por quem tem competência, tem outro nome — coerção. São duas palavras para dois momentos distintos, e trocá-las leva ao erro de achar que norma pacificamente cumprida é norma fraca."},
+  {t:"Não: coercibilidade é a força em potencial, e é por estar disponível que ela quase nunca precisa ser usada.",
+   p:"<b>Correta.</b> A força não desapareceu: está guardada, disponível, e é exatamente por estar disponível que raramente precisa sair do lugar. A norma sanitária cumprida por todos, sem uma única multa lavrada, continua sendo norma jurídica plena — e talvez seja o melhor exemplo possível de uma norma funcionando."},
+  {t:"Sim: a norma cumprida por todos converte-se em costume e deixa de ser jurídica.",
+   p:"Cumprimento não converte norma em costume, e sobretudo não a extingue. Uma norma amplamente obedecida é uma norma <em>eficaz</em> — o melhor resultado que ela pode alcançar, não o seu fim. Vale reparar que esta alternativa e a anterior chegam ao mesmo destino errado por caminhos opostos: uma diz que falta força, outra que sobra obediência."},
+  {t:"Não: a coercibilidade só desaparece quando o legislador a retira expressamente do texto.",
+   p:"Inventa um requisito que não existe. Coercibilidade é característica da norma jurídica, e não uma cláusula que se escreva ou se apague: nenhuma lei precisa declarar que traz força. Se é norma jurídica, traz — e se não trouxesse, não seria norma jurídica, seria outra coisa."}]},
+
+{bloco:"Módulo 1B", nivel:"médio", id:"B5",
+ base:"Um fiscal da vigilância aponta uma irregularidade na padaria, cita a norma em que se baseia, lavra o auto de infração e informa o prazo de defesa. Adverte ainda que, não corrigida a irregularidade, virá a multa, e a reincidência pode interditar o estabelecimento.",
+ comando:"Como se classifica a força que o fiscal está exercendo?",
+ certa:0,
+ alts:[
+  {t:"Coerção: a exigência tem base em norma, quem exige tem competência, e há prazo e defesa.",
+   p:"<b>Correta.</b> Passa nos três testes do módulo: existe norma que autorize a exigência — e norma que se pode ler, não a opinião de quem exige; quem exige tem competência, que também é dada por norma; e há procedimento, com prazo e possibilidade de contestar. Presentes os três, a força é legítima: é o Estado agindo dentro do Direito. Repare que a multa ainda não veio, e mesmo assim já há exercício de força — apontar, enquadrar e fixar prazo é agir."},
+  {t:"Coação, porque houve ameaça de consequência grave a um particular.",
+   p:"Coação é o uso da força <em>sem</em> amparo — sem base normativa, sem competência, ou sem procedimento. Aqui os três estão presentes e a consequência anunciada é a que a própria norma prevê. Anunciar a sanção prevista em lei não é ameaçar: é informar. Se bastasse a gravidade da consequência para haver coação, toda fiscalização do país seria ilícita."},
+  {t:"Coercibilidade, porque coercibilidade é o nome da força que o Estado usa contra quem descumpre a norma.",
+   p:"Troca a categoria. Coercibilidade não é o nome de nenhum ato: é <b>característica da norma</b> — a força em potencial que ela carrega mesmo quando ninguém a aciona, e sobre a qual nem se pergunta se é legítima. Quando alguém aciona essa força, com base em norma e por quem tem competência, o nome do ato é coerção. A alternativa descreve corretamente o que houve e dá a ele o rótulo errado."},
+  {t:"Nenhuma das três: anunciar sanção prevista em norma não é exercício de força.",
+   p:"Se fosse assim, só haveria força depois da multa paga — e a fiscalização inteira, que funciona sobretudo pelo que anuncia, ficaria fora do Direito. O aviso do fiscal produz efeito imediato: cria um prazo, define uma conduta devida e abre a possibilidade de defesa. Nada disso é conversa; é o Estado exercendo competência."}]},
+
+{bloco:"Módulo 1B", nivel:"médio", id:"B6",
+ base:"A empresa não renovou o contrato de um pequeno fornecedor da cidade, que dependia quase inteiramente dela. Cumpriu o aviso prévio previsto no contrato e pagou tudo em dia. A notícia correu, e a repercussão foi péssima.",
+ comando:"Como se lê essa situação?",
+ certa:2,
+ alts:[
+  {t:"Se é legal, o problema está encerrado; repercussão não é assunto jurídico nem gerencial.",
+   p:"Encerra o problema jurídico e trata o resto como se não existisse. Reputação é problema de gestão, e dos caros: perde-se cliente, perde-se fornecedor bom, perde-se contrato. O módulo aponta precisamente esta casa do quadro — legal e malvista — como a que mais custa reputação, e ela custa sem que nenhuma ilegalidade tenha sido cometida."},
+  {t:"Se é malvista, é ilegal: a reprovação social retira a validade do ato.",
+   p:"Reprovação social não invalida ato nenhum. Se invalidasse, a validade dependeria da opinião pública do dia, e ninguém conseguiria saber de antemão se um ato vale — que é o contrário do que o Direito se propõe a oferecer. Note que esta alternativa e a anterior são os dois extremos que o módulo recusa: uma ignora a moral, a outra dissolve o Direito nela."},
+  {t:"Cumprir a lei encerra o problema jurídico, não o problema todo — a conduta é permitida e moralmente reprovada.",
+   p:"<b>Correta.</b> É a casa “juridicamente permitido / moralmente reprovado” do quadro do módulo. Cumprir a lei responde à pergunta <em>posso?</em> e não responde à pergunta <em>devo?</em>. O administrador que trata as duas como uma só paga o preço em reputação sem ter cometido ilegalidade alguma — e sem entender por que está pagando."},
+  {t:"O caso é de coação, porque a empresa usou seu poder econômico contra quem dependia dela.",
+   p:"Coação, no sentido adotado nesta disciplina, é uso da força <em>sem</em> amparo normativo — e a empresa exerceu uma faculdade que o contrato lhe dava, no prazo que o contrato fixava. Desigualdade de poder entre as partes é um fato do caso, e não transforma em ilícito o exercício regular de um direito. O problema aqui não é de licitude."}]},
+
+{bloco:"Módulo 1B", nivel:"difícil", id:"B7",
+ base:"Um agente com crachá exige, verbalmente, um pagamento imediato “para regularizar a situação”. Não cita norma, não lavra documento, não fala em prazo.",
+ comando:"O que o administrador faz?",
+ certa:1,
+ alts:[
+  {t:"Paga: quem tem crachá representa o Estado, e resistir agrava a situação.",
+   p:"É o erro que custa dinheiro, e o módulo o identifica como o caso mais delicado de todos: há <em>aparência</em> de legitimidade sem que ela exista. O crachá prova que a pessoa exerce a função; não prova que aquela exigência tem base normativa, nem que o modo de exigi-la é o que a norma permite. É exatamente na confusão entre as duas coisas que mais administrador paga o que não devia."},
+  {t:"Pede por escrito a norma que fundamenta a exigência e o documento do ato; sem isso, não paga e registra o ocorrido.",
+   p:"<b>Correta.</b> Falham os três testes: não se citou norma, não se demonstrou competência para aquela exigência específica, e não houve procedimento, prazo nem defesa. Isso é coação, e coação não é norma jurídica de qualidade inferior — não é norma jurídica nenhuma, é ilícito, com nomes próprios no Direito. Pedir a base normativa por escrito é o gesto que separa uma coisa da outra, e registrar é o que protege a empresa depois."},
+  {t:"Ignora e segue trabalhando, porque sem documento nada aconteceu.",
+   p:"Ignorar sem registrar deixa a empresa exposta dos dois lados. Se depois vier uma autuação legítima sobre o mesmo assunto, não haverá prova de que a exigência anterior foi irregular, e o silêncio de hoje vira a versão do outro amanhã. A diferença entre esta alternativa e a correta é pequena no gesto e enorme na consequência: é só o registro."},
+  {t:"Paga e depois pede restituição, já que o ato pode ser revisto administrativamente.",
+   p:"Não há ato administrativo a rever: não houve documento, não houve processo, não houve autoridade identificada em papel nenhum. Pagar aqui não é antecipar algo que se discute depois — é alimentar um ilícito, e sem deixar rastro de que se pagou o quê a quem. A revisão administrativa que a alternativa invoca pressupõe justamente o que faltou no caso."}]},
+
+{bloco:"Módulo 1D", nivel:"fácil", id:"D1",
+ comando:"Nesta disciplina, qual a diferença entre característica e atributo da norma jurídica?",
+ certa:3,
+ alts:[
+  {t:"Característica é o que a doutrina afirma; atributo é o que a lei declara.",
+   p:"A distinção não é de fonte. Características e atributos são, ambos, categorias de análise usadas para descrever a mesma norma; nenhum dos dois vem declarado num texto legal que os batize. Trocar a pergunta “o que isso descreve?” pela pergunta “quem disse isso?” não leva a lugar nenhum aqui."},
+  {t:"Característica vale para a lei; atributo, apenas para as normas infralegais.",
+   p:"Não existe esse recorte por hierarquia. Uma portaria também é imperativa, geral, abstrata, bilateral, heterônoma e coercível — e também pode ser válida, vigente e eficaz, ou deixar de ser qualquer uma dessas coisas. As duas categorias se aplicam a toda norma, em qualquer degrau."},
+  {t:"Característica é exigível pelo Estado; atributo, apenas pelas partes.",
+   p:"Confunde a distinção com a bilateralidade, que é uma das características. Nem característica nem atributo são coisas que alguém “exige”: são modos de descrever a norma, e não posições dentro de uma relação jurídica."},
+  {t:"Característica descreve o que a norma <em>é</em>; atributo descreve a <em>situação</em> dela no sistema, que pode mudar.",
+   p:"<b>Correta.</b> Características dizem o que a norma é: imperativa, geral, abstrata, bilateral, heterônoma, coercível. Atributos dizem como ela está, e isso muda o tempo todo — uma lei perde vigência, ganha eficácia, é declarada inconstitucional, e continua com a mesma estrutura de sempre. Um passaporte é sempre um passaporte; pode estar válido, vencido ou apreendido. <em>Nota:</em> esta separação de rótulos é a convenção adotada nesta disciplina. Fora dela, muitos autores usam “características” e “atributos” como sinônimos — por isso o enunciado começa dizendo “nesta disciplina”."}]},
+
+{bloco:"Módulo 1D", nivel:"fácil", id:"D2",
+ base:"Seu dever de usar touca é, do outro lado, o poder de a vigilância fiscalizar.",
+ comando:"Que característica da norma jurídica está descrita aí?",
+ certa:1,
+ alts:[
+  {t:"Heteronomia.",
+   p:"Heteronomia é a norma vir de fora e obrigar mesmo que você discorde — é sobre a <em>origem</em> da regra, não sobre haver dois lados nela. A frase do enunciado está falando de quem pode cobrar; heteronomia falaria de quem fez a regra. Ambas estão presentes na norma da touca, e só uma responde à pergunta."},
+  {t:"Bilateralidade.",
+   p:"<b>Correta.</b> No mesmo gesto em que impõe um dever a alguém, a norma dá a outro alguém o direito de exigir. Não existe dever jurídico sem alguém do outro lado da mesa — e é isso que mais separa o Direito da moral, que só olha para quem deve cumprir e não cria ninguém com poder de cobrar."},
+  {t:"Abstração.",
+   p:"Abstração é descrever um modelo de conduta para casos futuros, em vez de um episódio já ocorrido. A norma da touca é abstrata, sim: foi escrita antes de esta padaria existir. Só que não é isso que a frase do enunciado descreve — ela descreve dois lados, não duas datas."},
+  {t:"Imperatividade.",
+   p:"Imperatividade é a norma mandar em vez de aconselhar: “usa touca” não é conselho de higiene, é ordem. Está presente no exemplo, e não é o que a frase destaca. O destaque da frase é haver alguém, do outro lado, com poder de fiscalizar — e isso tem outro nome."}]},
+
+{bloco:"Módulo 1D", nivel:"fácil", id:"D3",
+ base:"Um órgão cria, por portaria, uma obrigação que só a lei poderia criar.",
+ comando:"Que atributo da norma está comprometido?",
+ certa:0,
+ alts:[
+  {t:"A validade, porque a obrigação foi criada por um instrumento que não podia criá-la: só a lei poderia.",
+   p:"<b>Correta.</b> Validade é ter nascido certo, e se apura em duas frentes. <em>Validade formal:</em> produzida pelo instrumento adequado, seguindo o procedimento correto. <em>Validade material:</em> conteúdo compatível com as normas superiores. Cuidado com a formulação: o órgão até pode expedir portarias — o que ele não pode é criar por portaria uma obrigação que a Constituição reservou à lei. O defeito não é a autoridade ser a errada; é o veículo normativo ser o errado."},
+  {t:"A eficácia social, porque a obrigação não será cumprida.",
+   p:"Eficácia social é sobre as pessoas cumprirem, e uma norma inválida pode perfeitamente ser cumprida por muita gente que nem sabe do vício — aliás, costuma ser. O defeito apontado no enunciado está no <em>nascimento</em> da norma, não na obediência a ela."},
+  {t:"A vigência, porque o ato não observou a vacatio legis.",
+   p:"Vigência é a dimensão do tempo: quando a norma começa a valer e quando deixa de valer. A portaria do exemplo pode ter observado todos os prazos com rigor e ainda assim padecer do vício, porque o problema não é <em>quando</em> ela começou a valer, e sim <em>quem</em> podia criá-la."},
+  {t:"A coercibilidade, porque a portaria não prevê sanção.",
+   p:"Duas confusões numa alternativa só. Coercibilidade é característica, não atributo — a pergunta pedia atributo. E o vício apontado não tem relação com haver ou não previsão de sanção: uma portaria pode prever sanção pesadíssima e continuar inválida por ter invadido matéria reservada à lei."}]},
+
+{bloco:"Módulo 1D", nivel:"médio", id:"D4",
+ comando:"Uma lei foi publicada e nada diz sobre quando entra em vigor. A partir de quando ela obriga?",
+ certa:2,
+ alts:[
+  {t:"Da assinatura pela autoridade, ainda antes da publicação oficial.",
+   p:"A publicação oficial é o marco de nascimento da norma no mundo: antes dela, ninguém pode ser cobrado por desconhecer um texto que não circulou. Repare que a alternativa anda para o lado errado da linha do tempo — o intervalo que a lei prevê vem <em>depois</em> da publicação, e existe justamente para dar tempo às pessoas."},
+  {t:"Do dia seguinte ao da publicação oficial.",
+   p:"É a resposta intuitiva, e não é a regra geral. Muitas leis realmente entram em vigor na data da publicação ou logo depois — mas porque elas próprias dizem isso, e a lei costuma dizer. A pergunta aqui é outra: o que vale quando a lei <em>silencia</em>."},
+  {t:"De quarenta e cinco dias depois de oficialmente publicada.",
+   p:"<b>Correta.</b> Salvo disposição em contrário, a lei começa a vigorar <em>em todo o país</em> quarenta e cinco dias depois de oficialmente publicada. Esse intervalo entre a publicação e a entrada em vigor chama-se <b>vacatio legis</b> — a vacância da lei — e existe para que todos tomem conhecimento e se preparem. Guarde a exceção, que a expressão “em todo o país” anuncia: nos Estados estrangeiros, quando a lei brasileira é admitida, ela passa a obrigar <b>três meses</b> depois de publicada."},
+  {t:"Do primeiro dia do exercício seguinte ao da publicação.",
+   p:"Essa lógica de esperar o exercício seguinte existe em matéria tributária específica, para proteger o contribuinte de surpresa orçamentária. Não é a regra geral de vigência das leis, e não é o que se aplica quando a lei simplesmente cala sobre a data."}]},
+
+{bloco:"Módulo 1D", nivel:"médio", id:"D5",
+ comando:"Generalidade e abstração são a mesma coisa?",
+ certa:3,
+ alts:[
+  {t:"São, porque ambas indicam que a norma não trata de caso concreto.",
+   p:"Chega perto e para cedo. É verdade que a norma não trata de caso concreto — só que isso é a <em>abstração</em>, sozinha. A generalidade responde a outra pergunta: quantas e quais pessoas a norma alcança. Duas perguntas diferentes, com duas respostas diferentes, não são a mesma característica."},
+  {t:"São, porque uma norma específica no assunto deixa de ser geral e abstrata.",
+   p:"É o erro que esta questão persegue. Uma norma pode ser bem específica no tema — tratar só de padarias, só de um tipo de licença — e continuar geral e abstrata, porque alcança um número indeterminado de padarias e descreve situações que ainda vão acontecer. Específico no assunto não é o mesmo que dirigido a alguém determinado."},
+  {t:"Não: generalidade é característica da lei, e abstração, do decreto que a regulamenta.",
+   p:"Não há essa divisão por espécie normativa. Lei e decreto têm ambas as características, e ambas podem faltar num ato que, por isso mesmo, não é norma — uma decisão dirigida a uma pessoa determinada, sobre um fato já ocorrido, por exemplo."},
+  {t:"Não: generalidade diz respeito a <em>quem</em> a norma alcança; abstração, a <em>quais situações</em> ela descreve.",
+   p:"<b>Correta.</b> Andam sempre juntas e não se confundem. Generalidade fala de <em>quem</em>: um número indeterminado de pessoas, e não João ou a padaria da esquina. Abstração fala de <em>quais situações</em>: um modelo hipotético de conduta, e não um episódio já ocorrido."}]},
+
+{bloco:"Módulo 1D", nivel:"médio", id:"D6",
+ base:"Há anos ninguém no setor cumpre certa exigência, e nunca houve autuação. A fiscalização acaba de ser reforçada.",
+ comando:"Qual a situação da empresa?",
+ certa:0,
+ alts:[
+  {t:"Exposta: a norma continua válida e vigente, e pode ser aplicada inclusive quanto ao período de descumprimento, observados os prazos de prescrição.",
+   p:"<b>Correta.</b> Norma sem efetividade não é norma revogada: continua válida e vigente, e a força continua guardada. No dia em que a fiscalização aperta, ela se aplica — inclusive, e é aí que dói, sobre o período em que “ninguém cumpria”, respeitados os prazos que a lei fixa para a Administração punir. Para quem administra, a diferença entre eficácia social e validade é dinheiro."},
+  {t:"Segura: o descumprimento generalizado revogou a norma pelo costume.",
+   p:"Não existe revogação por desuso no nosso sistema. A lei tem vigor até que <em>outra</em> a modifique ou revogue — e a revogação é sempre ato de outra norma, nunca do comportamento de quem deveria obedecer. Existe, é verdade, o nome “costume contra a lei” para descrever a prática que contraria a norma; mas descrever não é revogar, e havendo conflito entre lei e costume prevalece a lei."},
+  {t:"Segura: sem eficácia social, a norma perde validade e vigência.",
+   p:"Mistura três atributos independentes entre si. Uma norma pode ser válida (nasceu certo), vigente (está dentro do seu período) e socialmente ineficaz (ninguém cumpre) tudo ao mesmo tempo — combinação comum, não exótica. Há teoria que trata a eficácia como <em>condição</em> de validade, mas olhando o ordenamento como um todo, e não norma por norma: no direito brasileiro, uma lei descumprida não deixa de valer por isso."},
+  {t:"Exposta apenas daqui em diante, pois a lei não alcança o passado.",
+   p:"Confunde duas coisas distintas, e é o distrator mais fino desta questão. A irretroatividade protege contra a <em>lei nova</em> aplicada ao passado — e aqui não há lei nova nenhuma. É a mesma norma que já estava valendo o tempo todo. Ninguém está alcançando o passado com regra nova; está-se cobrando a regra que já valia quando os fatos aconteceram."}]},
+
+{bloco:"Módulo 1D", nivel:"médio", id:"D7",
+ base:"Um contrato foi assinado e integralmente cumprido sob a lei antiga. A lei mudou.",
+ comando:"O contrato é reaberto?",
+ certa:3,
+ alts:[
+  {t:"Sim, porque a lei nova tem efeito imediato e geral, sem exceções.",
+   p:"O efeito imediato e geral existe mesmo, e a alternativa erra na parte final: ele não é sem exceções. A lei nova encontra três barreiras firmes — ato jurídico perfeito, direito adquirido e coisa julgada. O caso do enunciado cai exatamente na primeira delas."},
+  {t:"Sim, mas apenas quanto às parcelas ainda não pagas, por força da coisa julgada.",
+   p:"Troca o nome da barreira e ainda descreve um caso que não é o do enunciado. Coisa julgada é a decisão judicial da qual não cabe mais recurso, e aqui não houve processo nenhum. Além disso, o enunciado diz que o contrato foi <em>integralmente cumprido</em>: não há parcela pendente para discutir."},
+  {t:"Não, porque a lei nova só alcança contratos celebrados fora do território nacional.",
+   p:"Inverte a territorialidade. A regra é que a lei brasileira se aplica no território brasileiro, a brasileiros e a estrangeiros que aqui estejam — contratos celebrados aqui são precisamente os alcançados. O que existe é o inverso desta alternativa: casos em que a lei brasileira alcança situações no exterior, quando ela própria assim determina."},
+  {t:"Não, porque se trata de ato jurídico perfeito, uma das barreiras que a lei nova respeita.",
+   p:"<b>Correta.</b> Ato jurídico perfeito é o que já se completou segundo a lei vigente ao tempo em que foi feito — e repare que a lei fala em <em>ato</em>, não em contrato: contrato é uma espécie de ato jurídico, e a proteção alcança também ato administrativo e ato de processo. A garantia é dupla: está na Constituição, entre os direitos fundamentais, e repetida na lei que organiza a aplicação das normas. Para a gestão, as três barreiras valem uma frase só: regra nova não desfaz o que foi bem feito sob a regra antiga."}]},
+
+{bloco:"Módulo 1D", nivel:"médio", id:"D7B",
+ base:"A empresa e um cliente encerraram um contrato: tudo entregue, tudo pago, quitação assinada. Meses depois, uma lei nova cria uma exigência que aquele contrato não cumpria. O cliente vai à Justiça pedir que o contrato seja refeito segundo a lei nova.",
+ comando:"O que o juiz deve reconhecer?",
+ certa:1,
+ alts:[
+  {t:"Direito adquirido do cliente à regra nova, porque ela passou a valer enquanto o contrato ainda produzia efeitos.",
+   p:"Direito adquirido é o direito que <em>já entrou no patrimônio</em> de alguém porque essa pessoa preencheu todas as condições exigidas — ainda que não o tenha exercido. Repare que ele protege quem já conquistou algo <b>sob a lei antiga</b>, e nunca serve para reivindicar o que uma lei <b>nova</b> passou a prever. E o enunciado ainda fecha a porta: o contrato não produzia mais efeito nenhum, estava quitado."},
+  {t:"Ato jurídico perfeito: o ato se completou segundo a lei vigente ao tempo em que foi feito, e a lei nova não o alcança.",
+   p:"<b>Correta.</b> Ato jurídico perfeito é o já consumado segundo a lei vigente ao tempo em que se efetuou — e é exatamente o caso: entregue, pago, quitado, tudo sob a lei antiga. Guarde as três barreiras juntas, porque elas se confundem: <em>ato jurídico perfeito</em> é o ato já completo; <em>direito adquirido</em> é o direito já conquistado, mesmo que ainda não usado; <em>coisa julgada</em> é a decisão judicial definitiva. E cuidado com dois enganos comuns: a proteção é <b>contra a lei nova</b>, e não contra tudo — um contrato pode ser ato jurídico perfeito e ainda assim ser rescindido por inadimplemento. E <b>ato jurídico é bem mais que contrato</b>: um ato administrativo e um ato praticado dentro de um processo também se completam sob a lei do seu tempo."},
+  {t:"Coisa julgada, porque a quitação assinada tornou o negócio definitivo entre as partes.",
+   p:"Coisa julgada é a <b>decisão judicial</b> da qual não cabe mais recurso. Aqui não houve processo nenhum antes — o cliente está indo à Justiça agora, pela primeira vez —, e quitação é ato das partes, não decisão de juiz. A alternativa acerta a intuição de “está encerrado” e erra o nome do instituto que encerra. Nota para quem quiser ir além: uma sentença definitiva é, ela também, um ato que se completou sob a lei do seu tempo; o que a Constituição faz é dar a ela um nome próprio, pela força específica de não poder mais ser rediscutida."},
+  {t:"Que a lei nova tem efeito imediato e geral, e por isso alcança o contrato.",
+   p:"O efeito imediato e geral existe, e a alternativa erra ao tratá-lo como absoluto. A lei nova rege o futuro e encontra três barreiras firmes — ato jurídico perfeito, direito adquirido e coisa julgada —, protegidas na Constituição entre os direitos fundamentais. Para a gestão, a frase que resume tudo é: regra nova não desfaz negócio bem feito sob a regra antiga."}]},
+
+{bloco:"Módulo 1D", nivel:"difícil", id:"D8",
+ base:"Na negociação de um equipamento entre duas empresas, o vendedor omitiu de propósito um defeito que conhecia — e que, se revelado, teria impedido a compradora de fechar o negócio.",
+ comando:"Que espécie de defeito atinge o negócio, e o que ela exige do administrador?",
+ certa:2,
+ alts:[
+  {t:"Nulidade: o negócio nunca produziu efeito, e não há prazo a observar.",
+   p:"Nulidade é vício grave, que protege interesse público, de toda a sociedade: objeto ilícito ou impossível, falta da forma que a lei exige, negócio feito para fraudar lei imperativa. O caso do enunciado é outro — um particular enganou o outro, e o interesse ferido é o da parte enganada. Errar aqui tem consequência prática: quem acha que é nulo acha que tem tempo, e não tem."},
+  {t:"Nulidade por simulação, já que houve declaração diversa do combinado.",
+   p:"Simulação é as duas partes combinarem uma coisa e declararem outra, para enganar terceiros — as duas estão do mesmo lado, contra alguém de fora. Aqui é o oposto: uma parte enganou a outra, que não combinou coisa alguma. A palavra “declaração diversa” atrai, e a estrutura do caso não bate."},
+  {t:"Anulabilidade por dolo: a parte prejudicada tem prazo para pedir a anulação, e a inércia consolida o negócio.",
+   p:"<b>Correta.</b> Dolo é o engano induzido pela outra parte — e o silêncio intencional sobre o que a outra ignorava é dolo por omissão. Repare no dado que o enunciado dá: sem a omissão, o negócio não teria sido fechado. É isso que torna o dolo capaz de anular, e não apenas de gerar indenização. O que decide a conduta do administrador é o prazo: há tempo para pedir a anulação, e passado ele o ato se firma. Diante de um contrato anulável, ficar parado é escolher ficar com ele."},
+  {t:"Anulabilidade por erro, pois a compradora se enganou sozinha sobre o que contratava.",
+   p:"Acerta a espécie de defeito e erra o vício — e é essa a distinção que a questão cobra. <em>Erro</em> é quando a parte se engana sozinha, sem que ninguém a tenha induzido. Aqui houve omissão deliberada da outra parte para produzir o engano, e isso tem nome próprio: <b>dolo</b>. A consequência prática é parecida; a qualificação correta é o que se avalia."}]},
+
+{bloco:"Módulo 1D", nivel:"difícil", id:"D9",
+ base:"Uma portaria publicada este ano exige da empresa algo que a lei do ano passado dispensa expressamente. O setor jurídico diz que “a norma posterior prevalece”.",
+ comando:"Como decidir?",
+ certa:1,
+ alts:[
+  {t:"Seguir a portaria: é posterior, e a norma posterior revoga a anterior.",
+   p:"O critério é verdadeiro e está aplicado no lugar errado — e é isso que faz desta a questão mais difícil do treino. Posterior sobre anterior desempata conflito entre normas <em>do mesmo nível</em>: duas leis, dois decretos. Entre uma portaria e uma lei, quem decide primeiro é a hierarquia, e a conversa acaba antes de chegar a este critério."},
+  {t:"Seguir a lei: entre normas de níveis diferentes prevalece o critério hierárquico, e a portaria não pode criar obrigação que a lei dispensou.",
+   p:"<b>Correta.</b> O ordenamento não é uma pilha, é uma estrutura: a portaria se apoia no decreto, o decreto na lei, a lei na Constituição. Por isso o primeiro critério é <em>superior sobre inferior</em>, e os outros dois — posterior sobre anterior, especial sobre geral — pressupõem normas do mesmo degrau. Há um segundo motivo, e é ainda mais forte: ninguém é obrigado a fazer ou deixar de fazer alguma coisa senão em virtude de lei. A portaria aqui não está preenchendo lacuna nenhuma — está contrariando o que a lei dispensou expressamente."},
+  {t:"Seguir a portaria: é especial diante de uma lei geral.",
+   p:"Mesmo defeito da alternativa A, com outro critério igualmente verdadeiro. Especial sobre geral também pressupõe normas do mesmo nível. E repare no absurdo a que a alternativa levaria: se bastasse ser mais específica, qualquer órgão contornaria qualquer lei escrevendo uma portaria mais restrita — e a hierarquia deixaria de existir na prática."},
+  {t:"Aplicar as duas ao mesmo tempo, por não haver critério para decidir o conflito.",
+   p:"Nega que o ordenamento tenha resposta, e ele tem. Contradição entre normas é problema a resolver, não paralisia: existem critérios de desempate, e a resposta nunca é “cada um faz como quiser”. Além disso, aplicar as duas é materialmente impossível neste caso — uma exige exatamente o que a outra dispensa."}]}
+];
+
+const LETRA = ["A","B","C","D"];
+const CHAVE = "idpp-treino-1a1b1d-v1";
+let i = -1;
+let respostas = new Array(QUESTOES.length).fill(null);
+let conferidas = new Array(QUESTOES.length).fill(false);
+
+function salvar(){
+  try{ localStorage.setItem(CHAVE, JSON.stringify({respostas, conferidas})); }catch(e){}
+}
+function carregar(){
+  try{
+    const b = JSON.parse(localStorage.getItem(CHAVE) || "null");
+    if(b && Array.isArray(b.respostas) && b.respostas.length === QUESTOES.length){
+      respostas = b.respostas; conferidas = b.conferidas || conferidas;
+    }
+  }catch(e){}
+}
+
+const palco = document.getElementById("palco");
+const topo = document.getElementById("topo");
+const rodape = document.getElementById("rodape");
+const btVoltar = document.getElementById("btVoltar");
+const btRefazer = document.getElementById("btRefazer");
+const btAcao = document.getElementById("btAcao");
+
+function capa(){
+  topo.classList.add("oculto"); rodape.classList.add("oculto");
+  palco.className = "";
+  palco.innerHTML = `
+  <div class="capa">
+    <p class="selo">IDPP · Administração · UniFamec · 2026.2</p>
+    <h1>Treino para a avaliação formal</h1>
+    <p>Vinte e uma questões no formato da prova. As cinco primeiras são aquecimento sobre o
+    Módulo 1A, que <b>não cai</b>. As dezesseis seguintes são dos Módulos <b>1B</b> e <b>1D</b>,
+    que é o conteúdo avaliado.</p>
+    <ol class="passos">
+      <li>Leia o enunciado e as quatro alternativas, e toque na que você escolheu. Só uma fica marcada; tocar de novo na mesma <b>desmarca</b>.</li>
+      <li>Segure aí. Vamos discutir a questão em voz alta, antes de qualquer gabarito.</li>
+      <li>Quando o professor disser, toque em <b>Conferir a resposta</b>: aparece a correta e a explicação de cada uma das quatro alternativas, inclusive as que ninguém marcou.</li>
+      <li>Depois de conferir, <b>Refazer</b> limpa tudo e devolve a questão em branco, para você tentar de novo.</li>
+    </ol>
+    <div class="aviso"><b>A prova é quarta-feira, 02/09</b>, no nosso horário: individual, sem
+    consulta, valendo 8,0. Sete objetivas e três discursivas.</div>
+    <button class="b larga" type="button" onclick="ir(0)">Começar o treino</button>
+    <p class="creditos">Material elaborado com apoio de Inteligência Artificial Generativa —
+    Claude (Anthropic), modelo Opus 5 — para redação das questões e dos comentários. Fontes
+    conferidas e responsabilidade integral do professor. Os exemplos são construídos para esta
+    disciplina e não reproduzem casos reais.</p>
+  </div>`;
+}
+
+function questao(n){
+  const q = QUESTOES[n];
+  topo.classList.remove("oculto"); rodape.classList.remove("oculto");
+  document.getElementById("bloco").textContent = q.bloco;
+  const chip = document.getElementById("nivel");
+  chip.textContent = q.nivel;
+  chip.className = "chip" + (q.treino ? " treino" : "");
+  document.getElementById("conta").textContent = (n+1) + " / " + QUESTOES.length;
+  document.getElementById("barra").style.width = ((n+1)/QUESTOES.length*100) + "%";
+
+  const marcada = respostas[n];
+  const feito = conferidas[n];
+  palco.className = feito ? "conferido" : "";
+  palco.innerHTML =
+    (q.base ? `<div class="base">${q.base}</div>` : "") +
+    `<h2 class="comando">${q.comando}</h2>` +
+    `<div class="lista">` +
+      q.alts.map((a,k)=>`
+        <button class="alt${marcada===k?" marcada":""}${k===q.certa?" certa":" errada"}"
+                type="button" data-k="${k}"
+                aria-pressed="${marcada===k}">
+          <span class="letra">${LETRA[k]}</span>
+          <span class="corpo">
+            <span class="rotulos"><span class="rot escolha">sua escolha</span><span class="rot ok">resposta correta</span></span>
+            <span class="txt">${a.t}</span>
+            <span class="porque">${a.p}</span>
+          </span>
+        </button>`).join("") +
+    `</div>` +
+    `<div class="veredito">A alternativa correta é a <b>${LETRA[q.certa]}</b>.` +
+      (marcada===null ? " Você não marcou nenhuma."
+        : marcada===q.certa ? " Foi a que você marcou."
+        : ` Você marcou a <b>${LETRA[marcada]}</b> — leia acima por que ela não serve. Pode remarcar, ou tocar em Refazer para começar esta questão do zero.`) +
+    `</div>`;
+
+  palco.querySelectorAll(".alt").forEach(b=>{
+    b.addEventListener("click", ()=>{
+      const k = Number(b.dataset.k);
+      respostas[n] = (respostas[n] === k) ? null : k;   // tocar na marcada desmarca
+      salvar(); questao(n);
+    });
+  });
+
+  btVoltar.textContent = n === 0 ? "Início" : "Voltar";
+  btRefazer.classList.toggle("oculto", !feito);
+  btRefazer.onclick = ()=>{
+    respostas[n] = null; conferidas[n] = false; salvar(); questao(n);
+    window.scrollTo({top:0, behavior:"smooth"});
+  };
+  if(!feito){
+    btAcao.textContent = "Conferir a resposta";
+    btAcao.disabled = marcada === null;
+    btAcao.onclick = ()=>{ conferidas[n]=true; salvar(); questao(n); };
+  }else{
+    btAcao.disabled = false;
+    btAcao.textContent = n === QUESTOES.length-1 ? "Ver o resultado" : "Próxima questão";
+    btAcao.onclick = ()=> ir(n+1);
+  }
+}
+
+function fecho(){
+  topo.classList.add("oculto"); rodape.classList.add("oculto");
+  palco.className = "";
+  const prova = QUESTOES.map((q,k)=>({q,k})).filter(o=>!o.q.treino);
+  const acertos = prova.filter(o=>respostas[o.k]===o.q.certa).length;
+  palco.innerHTML = `
+  <div class="capa">
+    <p class="selo">Fim do treino</p>
+    <div class="placar"><span class="n">${acertos}</span><span class="de">de ${prova.length} nas questões que caem na prova</span></div>
+    <p>As cinco de aquecimento não entram nesta conta: o Módulo 1A não é avaliado.</p>
+    <div class="rolagem"><table class="rev">
+      <thead><tr><th>Questão</th><th>Assunto</th><th>Você</th><th></th></tr></thead>
+      <tbody>
+      ${prova.map(o=>{
+        const r = respostas[o.k];
+        const st = r===null ? `<td class="st vazio">em branco</td>`
+                 : r===o.q.certa ? `<td class="st ok">acertou</td>`
+                 : `<td class="st no">marcou ${LETRA[r]}</td>`;
+        return `<tr><td><b>${o.q.id}</b></td><td>${o.q.bloco.replace("Módulo ","")} · ${o.q.nivel}</td>${st}
+          <td><button type="button" onclick="ir(${o.k})">rever</button></td></tr>`;
+      }).join("")}
+      </tbody>
+    </table></div>
+    <div class="aviso"><b>Prova: quarta-feira, 02/09/2026</b>, no nosso horário. Cai o que está
+    nos Módulos 1B e 1D. Nenhuma questão pede número de artigo — pede nomear a instituição, o
+    princípio ou a espécie normativa.</div>
+    <button class="b larga" type="button" onclick="ir(0)">Rever desde o começo</button>
+    <p class="creditos">Suas marcações ficam guardadas só neste aparelho, e ninguém além de você
+    as vê. Recarregar a página não apaga nada.</p>
+  </div>`;
+}
+
+function ir(n){
+  i = n;
+  if(n < 0) capa();
+  else if(n >= QUESTOES.length) fecho();
+  else questao(n);
+  window.scrollTo({top:0});
+}
+
+btVoltar.addEventListener("click", ()=> ir(i-1));
+document.addEventListener("keydown", e=>{
+  if(i<0 || i>=QUESTOES.length) return;
+  if(e.key==="ArrowRight" && !btAcao.disabled) btAcao.click();
+  if(e.key==="ArrowLeft") ir(i-1);
+});
+
+carregar();
+capa();
+</script>
+</body>
+</html>
