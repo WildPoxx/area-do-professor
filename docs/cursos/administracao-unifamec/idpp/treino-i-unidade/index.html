@@ -150,6 +150,7 @@ table.rev button{font:inherit;font-size:14px;padding:5px 10px;border:1px solid v
   <div class="rodape oculto" id="rodape">
     <button class="b sec mini" id="btVoltar" type="button">Voltar</button>
     <button class="b sec mini oculto" id="btRefazer" type="button">Refazer</button>
+    <button class="b sec mini oculto" id="btPular" type="button">Pular</button>
     <button class="b larga" id="btAcao" type="button">Conferir a resposta</button>
   </div>
 </div>
@@ -483,6 +484,7 @@ const topo = document.getElementById("topo");
 const rodape = document.getElementById("rodape");
 const btVoltar = document.getElementById("btVoltar");
 const btRefazer = document.getElementById("btRefazer");
+const btPular = document.getElementById("btPular");
 const btAcao = document.getElementById("btAcao");
 
 function capa(){
@@ -560,6 +562,9 @@ function questao(n){
     respostas[n] = null; conferidas[n] = false; salvar(); questao(n);
     window.scrollTo({top:0, behavior:"smooth"});
   };
+  btPular.classList.toggle("oculto", feito);
+  btPular.textContent = n === QUESTOES.length-1 ? "Encerrar" : "Pular";
+  btPular.onclick = ()=> ir(n+1);
   if(!feito){
     btAcao.textContent = "Conferir a resposta";
     btAcao.disabled = marcada === null;
